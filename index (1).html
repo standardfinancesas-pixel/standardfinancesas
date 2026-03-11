@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Standard Finances S.A.S</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --white: #ffffff; --off-white: #f7f8fb; --light: #e8edf6; --mid: #c0cce6;
+      --blue-soft: #5b80c4; --blue: #1d4ed8; --blue-dark: #0f2d6b;
+      --ink: #0a1628; --text: #2c3e5a; --muted: #6b7e9f; --accent: #2563eb; --gold: #b8974e;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; color: var(--text); background: var(--white); overflow-x: hidden; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 6vw;
+      background: rgba(255,255,255,0.92); backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(93,128,196,0.1); transition: box-shadow 0.3s;
+    }
+    nav.scrolled { box-shadow: 0 2px 28px rgba(15,45,107,0.09); }
+    .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 600; color: var(--blue-dark); letter-spacing: 0.02em; text-decoration: none; }
+    .nav-logo span { color: var(--gold); }
+    .nav-links { display: flex; gap: 2.2rem; list-style: none; }
+    .nav-links a { font-size: 0.8rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-cta { font-size: 0.8rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--white); background: var(--blue-dark); border: none; padding: 0.6rem 1.4rem; cursor: pointer; text-decoration: none; transition: background 0.2s, transform 0.15s; }
+    .nav-cta:hover { background: var(--accent); transform: translateY(-1px); }
+
+    /* HERO */
+    #hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; align-items: center; padding: 8rem 6vw 5rem; position: relative; overflow: hidden; }
+    .hero-bg { position: absolute; inset: 0; z-index: 0; background: radial-gradient(ellipse 65% 55% at 78% 42%, rgba(37,99,235,0.07) 0%, transparent 70%), radial-gradient(ellipse 40% 45% at 15% 85%, rgba(184,151,78,0.05) 0%, transparent 60%); }
+    .hero-grid { position: absolute; inset: 0; z-index: 0; background-image: linear-gradient(rgba(93,128,196,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(93,128,196,0.05) 1px, transparent 1px); background-size: 56px 56px; mask-image: radial-gradient(ellipse 80% 80% at 75% 50%, black 20%, transparent 100%); }
+    .hero-content { position: relative; z-index: 1; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.7rem; font-weight: 500; letter-spacing: 0.13em; text-transform: uppercase; color: var(--gold); border: 1px solid rgba(184,151,78,0.3); padding: 0.38rem 1rem; margin-bottom: 1.8rem; opacity: 0; animation: fadeUp 0.7s 0.2s ease forwards; }
+    .hero-badge::before { content: ''; width: 5px; height: 5px; background: var(--gold); border-radius: 50%; }
+    .hero-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.6rem, 4.5vw, 4rem); font-weight: 400; line-height: 1.1; color: var(--ink); margin-bottom: 1.5rem; opacity: 0; animation: fadeUp 0.8s 0.4s ease forwards; }
+    .hero-title strong { font-weight: 600; color: var(--blue-dark); display: block; }
+    .hero-title em { font-style: italic; color: var(--gold); }
+    .hero-subtitle { font-size: 0.97rem; font-weight: 300; line-height: 1.8; color: var(--muted); max-width: 430px; margin-bottom: 2.6rem; opacity: 0; animation: fadeUp 0.8s 0.6s ease forwards; }
+    .hero-actions { display: flex; gap: 1rem; align-items: center; opacity: 0; animation: fadeUp 0.8s 0.8s ease forwards; }
+    .btn-primary { font-size: 0.8rem; font-weight: 500; letter-spacing: 0.07em; text-transform: uppercase; color: var(--white); background: var(--blue-dark); border: none; padding: 0.9rem 2rem; cursor: pointer; text-decoration: none; display: inline-block; transition: background 0.2s, transform 0.15s, box-shadow 0.2s; }
+    .btn-primary:hover { background: var(--accent); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(37,99,235,0.22); }
+    .btn-ghost { font-size: 0.8rem; font-weight: 500; letter-spacing: 0.04em; color: var(--blue-dark); background: transparent; border: none; padding: 0.9rem 0.4rem; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; transition: gap 0.2s, color 0.2s; }
+    .btn-ghost:hover { gap: 0.85rem; color: var(--accent); }
+    .btn-ghost::after { content: '→'; font-size: 1rem; }
+    .hero-visual { position: relative; z-index: 1; display: flex; justify-content: flex-end; align-items: center; opacity: 0; animation: fadeIn 1.2s 0.9s ease forwards; }
+    .card-stack { position: relative; width: min(400px, 100%); }
+    .metric-card { background: var(--white); border: 1px solid var(--light); padding: 1.7rem 2rem; box-shadow: 0 4px 30px rgba(15,45,107,0.07); }
+    .metric-card + .metric-card { margin-top: 1rem; }
+    .metric-card.dark { background: var(--blue-dark); border-color: transparent; margin-left: 2rem; }
+    .m-label { font-size: 0.68rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.4rem; }
+    .dark .m-label { color: rgba(255,255,255,0.45); }
+    .m-value { font-family: 'Cormorant Garamond', serif; font-size: 2.1rem; font-weight: 500; color: var(--ink); line-height: 1; }
+    .dark .m-value { color: var(--white); }
+    .m-value sup { font-size: 0.95rem; color: var(--gold); vertical-align: super; }
+    .m-sub { font-size: 0.76rem; color: var(--muted); margin-top: 0.25rem; }
+    .dark .m-sub { color: rgba(255,255,255,0.4); }
+    .m-bar { height: 3px; background: var(--light); margin-top: 1rem; overflow: hidden; }
+    .dark .m-bar { background: rgba(255,255,255,0.1); }
+    .m-fill { height: 100%; width: 0; background: linear-gradient(90deg, var(--blue-soft), var(--accent)); animation: growBar 1.8s 1.5s ease forwards; }
+    .dark .m-fill { background: rgba(255,255,255,0.45); animation-name: growBarAlt; }
+
+    /* STATS */
+    .stats-strip { background: var(--off-white); border-top: 1px solid var(--light); border-bottom: 1px solid var(--light); padding: 2.4rem 6vw; display: flex; justify-content: space-around; align-items: center; flex-wrap: wrap; gap: 2rem; }
+    .stat-item { text-align: center; }
+    .stat-number { font-family: 'Cormorant Garamond', serif; font-size: 2.3rem; font-weight: 500; color: var(--blue-dark); line-height: 1; }
+    .stat-number span { color: var(--gold); }
+    .stat-desc { font-size: 0.74rem; letter-spacing: 0.07em; text-transform: uppercase; color: var(--muted); margin-top: 0.25rem; }
+    .stat-div { width: 1px; height: 38px; background: var(--mid); }
+
+    /* SERVICES */
+    #servicios { padding: 7rem 6vw; background: var(--white); }
+    .section-eyebrow { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.7rem; display: flex; align-items: center; gap: 0.8rem; }
+    .section-eyebrow::after { content: ''; display: block; width: 28px; height: 1px; background: var(--gold); }
+    .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.9rem, 3.2vw, 2.8rem); font-weight: 400; color: var(--ink); line-height: 1.2; max-width: 520px; margin-bottom: 3.5rem; }
+    .section-title strong { font-weight: 600; color: var(--blue-dark); }
+    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid var(--light); }
+    .service-card { padding: 2.8rem 2.2rem; border-right: 1px solid var(--light); position: relative; overflow: hidden; transition: background 0.3s; }
+    .service-card:last-child { border-right: none; }
+    .service-card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--blue-soft), var(--accent)); transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease; }
+    .service-card:hover::after { transform: scaleX(1); }
+    .service-card:hover { background: var(--off-white); }
+    .service-num { font-family: 'Cormorant Garamond', serif; font-size: 0.8rem; font-weight: 500; color: var(--mid); letter-spacing: 0.1em; margin-bottom: 1.5rem; }
+    .service-icon-wrap { width: 48px; height: 48px; margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: center; background: rgba(37,99,235,0.07); }
+    .service-icon-wrap svg { width: 24px; height: 24px; }
+    .service-name { font-family: 'Cormorant Garamond', serif; font-size: 1.55rem; font-weight: 500; color: var(--ink); margin-bottom: 0.7rem; line-height: 1.2; }
+    .service-desc { font-size: 0.86rem; font-weight: 300; line-height: 1.8; color: var(--muted); }
+    .service-list { margin-top: 1.4rem; list-style: none; display: flex; flex-direction: column; gap: 0.45rem; }
+    .service-list li { font-size: 0.8rem; color: var(--text); display: flex; align-items: center; gap: 0.6rem; }
+    .service-list li::before { content: ''; width: 4px; height: 4px; background: var(--accent); border-radius: 50%; flex-shrink: 0; }
+
+    /* WHY US */
+    #nosotros { padding: 7rem 6vw; background: var(--blue-dark); display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+    .why-text { font-size: 0.9rem; font-weight: 300; line-height: 1.9; color: rgba(255,255,255,0.55); margin-top: 1.2rem; }
+    .pillars { display: flex; flex-direction: column; gap: 1.2rem; }
+    .pillar { display: flex; gap: 1.1rem; align-items: flex-start; padding: 1.4rem 1.5rem; border: 1px solid rgba(255,255,255,0.07); transition: background 0.3s, border-color 0.3s; }
+    .pillar:hover { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.14); }
+    .pillar-icon { width: 38px; height: 38px; flex-shrink: 0; background: rgba(37,99,235,0.3); display: flex; align-items: center; justify-content: center; }
+    .pillar-icon svg { width: 18px; height: 18px; }
+    .pillar-title { font-family: 'Cormorant Garamond', serif; font-size: 1.08rem; font-weight: 500; color: var(--white); margin-bottom: 0.25rem; }
+    .pillar-desc { font-size: 0.8rem; font-weight: 300; color: rgba(255,255,255,0.45); line-height: 1.6; }
+
+    /* CONTACT */
+    #contacto { padding: 7rem 6vw; background: var(--off-white); display: grid; grid-template-columns: 1fr 1.2fr; gap: 5rem; align-items: start; }
+    .contact-desc { font-size: 0.88rem; font-weight: 300; line-height: 1.85; color: var(--muted); margin-top: 1rem; margin-bottom: 2.2rem; }
+    .contact-details { display: flex; flex-direction: column; gap: 0.9rem; }
+    .contact-item { display: flex; align-items: center; gap: 1rem; font-size: 0.84rem; color: var(--text); }
+    .contact-ico { width: 36px; height: 36px; flex-shrink: 0; background: var(--white); border: 1px solid var(--light); display: flex; align-items: center; justify-content: center; }
+    .contact-ico svg { width: 16px; height: 16px; }
+    .contact-form { background: var(--white); border: 1px solid var(--light); padding: 2.4rem; box-shadow: 0 4px 30px rgba(15,45,107,0.05); }
+    .form-title { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 500; color: var(--ink); margin-bottom: 1.6rem; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-group { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 0.9rem; }
+    .form-group label { font-size: 0.68rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+    .form-group input, .form-group select, .form-group textarea { font-family: 'DM Sans', sans-serif; font-size: 0.86rem; color: var(--ink); background: var(--off-white); border: 1px solid var(--light); padding: 0.75rem 1rem; outline: none; width: 100%; transition: border-color 0.2s, background 0.2s; appearance: none; }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--accent); background: var(--white); }
+    .form-group textarea { resize: vertical; min-height: 95px; }
+    .form-notice { font-size: 0.74rem; color: var(--muted); margin-bottom: 1rem; line-height: 1.6; }
+    .form-submit { width: 100%; font-family: 'DM Sans', sans-serif; font-size: 0.8rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--white); background: var(--blue-dark); border: none; padding: 1rem 2rem; cursor: pointer; transition: background 0.2s, transform 0.15s; }
+    .form-submit:hover { background: var(--accent); transform: translateY(-1px); }
+    .form-success { display: none; text-align: center; padding: 2.5rem 1rem; }
+    .form-success-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+    .form-success-title { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; color: var(--blue-dark); margin-bottom: 0.5rem; }
+    .form-success-text { font-size: 0.85rem; color: var(--muted); font-weight: 300; }
+
+    /* FOOTER */
+    footer { background: var(--ink); color: var(--white); padding: 2.8rem 6vw; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem; }
+    .footer-brand { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 500; }
+    .footer-brand span { color: var(--gold); }
+    .footer-links { display: flex; gap: 2rem; }
+    .footer-links a { font-size: 0.74rem; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(255,255,255,0.4); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--white); }
+    .footer-copy { font-size: 0.74rem; color: rgba(255,255,255,0.25); }
+
+    /* TESTIMONIALS */
+    #testimonios {
+      padding: 7rem 6vw;
+      background: var(--off-white);
+      border-top: 1px solid var(--light);
+    }
+
+    .testi-label {
+      font-size: 0.7rem; font-weight: 500; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--blue-dark);
+      margin-bottom: 1.5rem;
+      display: flex; align-items: center; gap: 0.8rem;
+    }
+    .testi-label::before { content: ''; display: block; width: 20px; height: 1px; background: var(--blue-dark); }
+
+    .testi-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.2rem;
+      margin-bottom: 1rem;
+    }
+
+    .testi-card {
+      background: var(--white);
+      border: 1px solid var(--light);
+      padding: 2rem 2rem 1.8rem;
+      display: flex; flex-direction: column; gap: 1rem;
+      transition: box-shadow 0.3s, transform 0.3s;
+      position: relative;
+    }
+    .testi-card:hover {
+      box-shadow: 0 8px 32px rgba(15,45,107,0.09);
+      transform: translateY(-3px);
+    }
+    .testi-card--pyme { border-top: 2px solid var(--gold); }
+
+    .testi-sector {
+      font-size: 0.68rem; font-weight: 500; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--gold);
+    }
+
+    .testi-stars { color: var(--gold); font-size: 0.85rem; letter-spacing: 0.1em; }
+
+    .testi-text {
+      font-size: 0.88rem; font-weight: 300; line-height: 1.85;
+      color: var(--text); flex: 1;
+      font-style: italic;
+    }
+
+    .testi-author {
+      display: flex; align-items: center; gap: 0.9rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--light);
+    }
+
+    .testi-avatar {
+      width: 38px; height: 38px; flex-shrink: 0;
+      background: var(--blue-dark);
+      color: var(--white);
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.04em;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 2px;
+    }
+    .testi-avatar.pyme {
+      background: rgba(184,151,78,0.12);
+      font-size: 1.1rem;
+    }
+
+    .testi-name { font-size: 0.84rem; font-weight: 500; color: var(--ink); }
+    .testi-role { font-size: 0.74rem; color: var(--muted); margin-top: 0.1rem; }
+
+    /* WHATSAPP BUTTON */
+    .wa-float {
+      position: fixed; bottom: 2rem; right: 2rem; z-index: 200;
+      display: flex; align-items: center; gap: 0.7rem;
+      background: #25D366; color: white;
+      padding: 0.75rem 1.2rem 0.75rem 0.9rem;
+      border-radius: 50px;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+      text-decoration: none; font-size: 0.82rem; font-weight: 500;
+      letter-spacing: 0.02em;
+      transition: transform 0.2s, box-shadow 0.2s;
+      animation: waPulse 2.5s 3s ease infinite;
+    }
+    .wa-float:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(37,211,102,0.5); animation: none; }
+    .wa-float svg { width: 22px; height: 22px; flex-shrink: 0; }
+    @keyframes waPulse {
+      0%, 100% { box-shadow: 0 4px 20px rgba(37,211,102,0.4); }
+      50% { box-shadow: 0 4px 30px rgba(37,211,102,0.7); }
+    }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes growBar { to { width: 72%; } }
+    @keyframes growBarAlt { to { width: 55%; } }
+
+    /* RESPONSIVE */
+    @media (max-width: 960px) {
+      #hero { grid-template-columns: 1fr; padding-top: 6rem; }
+      .hero-visual { display: none; }
+      #nosotros, #contacto { grid-template-columns: 1fr; gap: 3rem; }
+      .form-row { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .testi-grid { grid-template-columns: 1fr; }
+      .services-grid { grid-template-columns: 1fr; }
+      .service-card { border-right: none; border-bottom: 1px solid var(--light); }
+      .service-card:last-child { border-bottom: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav id="navbar">
+    <a href="#" class="nav-logo">Standard<span>.</span>Finances</a>
+    <ul class="nav-links">
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#nosotros">Nosotros</a></li>
+      <li><a href="#testimonios">Testimonios</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+    <a href="#contacto" class="nav-cta">Solicitar Asesoría</a>
+  </nav>
+
+  <section id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-content">
+      <div class="hero-badge">Asesoría Financiera Especializada</div>
+      <h1 class="hero-title">
+        Tu patrimonio,<br>
+        <strong>en manos expertas.</strong>
+        <em>Decisiones que crecen.</em>
+      </h1>
+      <p class="hero-subtitle">
+        En Standard Finances S.A.S acompañamos a personas y empresas a tomar decisiones financieras inteligentes. Inversiones sólidas, planificación patrimonial y asesoría personalizada.
+      </p>
+      <div class="hero-actions">
+        <a href="#contacto" class="btn-primary">Comenzar ahora</a>
+        <a href="#servicios" class="btn-ghost">Ver servicios</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="card-stack">
+        <div class="metric-card">
+          <div class="m-label">Retorno promedio anual</div>
+          <div class="m-value"><sup>+</sup>12<sup>%</sup></div>
+          <div class="m-sub">En dólares · Portafolios gestionados 2024</div>
+          <div class="m-bar"><div class="m-fill"></div></div>
+        </div>
+        <div class="metric-card dark">
+          <div class="m-label">Clientes satisfechos</div>
+          <div class="m-value">200<sup>+</sup></div>
+          <div class="m-sub">En Argentina y Latinoamérica</div>
+          <div class="m-bar"><div class="m-fill"></div></div>
+        </div>
+        <div class="metric-card">
+          <div class="m-label">Activos bajo gestión</div>
+          <div class="m-value">USD <sup>$</sup>12M<sup>+</sup></div>
+          <div class="m-sub">Patrimonio administrado</div>
+          <div class="m-bar"><div class="m-fill"></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="stats-strip">
+    <div class="stat-item"><div class="stat-number">10<span>+</span></div><div class="stat-desc">Años de experiencia</div></div>
+    <div class="stat-div"></div>
+    <div class="stat-item"><div class="stat-number">200<span>+</span></div><div class="stat-desc">Clientes activos</div></div>
+    <div class="stat-div"></div>
+    <div class="stat-item"><div class="stat-number">98<span>%</span></div><div class="stat-desc">Tasa de retención</div></div>
+    <div class="stat-div"></div>
+    <div class="stat-item"><div class="stat-number">3<span>+</span></div><div class="stat-desc">Países de operación</div></div>
+  </div>
+
+  <section id="servicios">
+    <div class="section-eyebrow">Lo que hacemos</div>
+    <h2 class="section-title">Servicios diseñados para <strong>hacer crecer tu capital</strong></h2>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-num">01</div>
+        <div class="service-icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        </div>
+        <div class="service-name">Asesoría Financiera</div>
+        <div class="service-desc">Diagnóstico completo de tu situación financiera y elaboración de una estrategia a medida para alcanzar tus objetivos.</div>
+        <ul class="service-list">
+          <li>Planificación financiera personal y empresarial</li>
+          <li>Análisis de riesgo y perfil inversor</li>
+          <li>Seguimiento y ajuste continuo</li>
+          <li>Asesoría fiscal y patrimonial</li>
+        </ul>
+      </div>
+      <div class="service-card">
+        <div class="service-num">02</div>
+        <div class="service-icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="1.5"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+        </div>
+        <div class="service-name">Inversiones y Patrimonio</div>
+        <div class="service-desc">Construcción y gestión de portafolios diversificados que maximizan el rendimiento y protegen tu capital a largo plazo.</div>
+        <ul class="service-list">
+          <li>Acciones, bonos y activos alternativos</li>
+          <li>Diversificación internacional</li>
+          <li>Gestión activa y pasiva de portafolios</li>
+          <li>Reportes de rendimiento periódicos</li>
+        </ul>
+      </div>
+      <div class="service-card">
+        <div class="service-num">03</div>
+        <div class="service-icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+        </div>
+        <div class="service-name">Planificación Patrimonial</div>
+        <div class="service-desc">Estructuración y protección de tu patrimonio para asegurar su preservación y transferencia generacional con eficiencia.</div>
+        <ul class="service-list">
+          <li>Estructuras societarias y fideicomisos</li>
+          <li>Planificación sucesoria</li>
+          <li>Protección de activos</li>
+          <li>Optimización tributaria</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="nosotros">
+    <div>
+      <div class="section-eyebrow" style="color:var(--gold)">Por qué elegirnos</div>
+      <h2 class="section-title" style="color:var(--white);max-width:100%">Comprometidos con <strong style="color:rgba(255,255,255,0.5)">tu crecimiento financiero</strong></h2>
+      <p class="why-text">Standard Finances S.A.S nació con la convicción de que el asesoramiento financiero de calidad debe estar al alcance de todos. Combinamos experiencia, tecnología y un enfoque 100% personalizado para ayudarte a tomar las mejores decisiones para tu futuro.</p>
+    </div>
+    <div class="pillars">
+      <div class="pillar">
+        <div class="pillar-icon"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.8)" stroke-width="1.5"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
+        <div><div class="pillar-title">Asesoría 100% personalizada</div><div class="pillar-desc">Cada cliente es único. Diseñamos estrategias adaptadas a tus metas, horizonte de tiempo y tolerancia al riesgo.</div></div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.8)" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <div><div class="pillar-title">Transparencia total</div><div class="pillar-desc">Sin letra chica. Informes claros, comisiones explícitas y comunicación directa en cada etapa del proceso.</div></div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.8)" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+        <div><div class="pillar-title">Seguimiento continuo</div><div class="pillar-desc">Revisiones periódicas y ajustes proactivos para que tu portafolio responda a los cambios del mercado.</div></div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.8)" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8zM23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div>
+        <div><div class="pillar-title">Equipo especializado</div><div class="pillar-desc">Profesionales con experiencia en mercados locales e internacionales, siempre actualizados en las mejores prácticas.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contacto">
+    <div>
+      <div class="section-eyebrow">Contacto</div>
+      <h2 class="section-title">Hablemos sobre <strong>tu futuro financiero</strong></h2>
+      <p class="contact-desc">Completá el formulario y un asesor de Standard Finances se comunicará con vos en menos de 24 horas para una consulta sin cargo.</p>
+      <div class="contact-details">
+        <div class="contact-item">
+          <div class="contact-ico"><svg viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+          <span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="ec9f988d82888d9e888a85828d828f899f8d9fac8b818d8580c28f8381">[email&#160;protected]</a></span>
+        </div>
+        <div class="contact-item">
+          <div class="contact-ico"><svg viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.22 1.18 2 2 0 012.18 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.18 6.18l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div>
+          <span>+54 9 11 4039-9204</span>
+        </div>
+        <div class="contact-item">
+          <div class="contact-ico"><svg viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+          <span>Lunes a viernes, 9:00 – 18:00 hs (ARG)</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-form">
+      <div class="form-title">Solicitar consulta gratuita</div>
+      <div id="formContainer">
+        <div class="form-row">
+          <div class="form-group"><label>Nombre *</label><input type="text" id="nombre" placeholder="Tu nombre" /></div>
+          <div class="form-group"><label>Apellido</label><input type="text" id="apellido" placeholder="Tu apellido" /></div>
+        </div>
+        <div class="form-group"><label>Email *</label><input type="email" id="email" placeholder="tucorreo@ejemplo.com" /></div>
+        <div class="form-group"><label>Teléfono</label><input type="tel" id="telefono" placeholder="+54 9 11 0000-0000" /></div>
+        <div class="form-group">
+          <label>Servicio de interés *</label>
+          <select id="servicio">
+            <option value="" disabled selected>Seleccioná un servicio</option>
+            <option>Asesoría Financiera</option>
+            <option>Inversiones y Patrimonio</option>
+            <option>Planificación Patrimonial</option>
+            <option>Consulta general</option>
+          </select>
+        </div>
+        <div class="form-group"><label>Mensaje (opcional)</label><textarea id="mensaje" placeholder="Contanos brevemente tu situación o consulta..."></textarea></div>
+        <p class="form-notice">Al enviar este formulario aceptás ser contactado por nuestro equipo. Tu información es confidencial y no será compartida con terceros.</p>
+        <button class="form-submit" onclick="handleSubmit()">Enviar solicitud →</button>
+      </div>
+      <div class="form-success" id="formSuccess">
+        <div class="form-success-icon">✓</div>
+        <div class="form-success-title">¡Gracias por tu consulta!</div>
+        <div class="form-success-text">Se abrió WhatsApp con tu consulta lista para enviar. También podés escribirnos a <strong><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="453631242b21243721232c2b242b2620362436052228242c296b262a28">[email&#160;protected]</a></strong>.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section id="testimonios">
+    <div class="section-eyebrow">Testimonios</div>
+    <h2 class="section-title">Lo que dicen quienes <strong>ya confían en nosotros</strong></h2>
+
+    <div class="testi-label">Clientes individuales</div>
+    <div class="testi-grid">
+
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Llegué a Standard Finances sin saber nada de inversiones. Hoy tengo un portafolio en dólares que rinde por encima de lo que imaginaba. La claridad con la que explican cada decisión hace toda la diferencia."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">MG</div>
+          <div>
+            <div class="testi-name">Martina G.</div>
+            <div class="testi-role">Profesional independiente · Buenos Aires</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Lo que más valoro es que siempre están disponibles para explicarme qué pasa con mi inversión. No me venden productos, me asesoran de verdad. Llevo 3 años trabajando con ellos y no me arrepiento."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">RV</div>
+          <div>
+            <div class="testi-name">Rodrigo V.</div>
+            <div class="testi-role">Médico · Córdoba</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Me ayudaron a estructurar mi patrimonio personal y a entender cómo protegerlo ante la inflación. El seguimiento es constante y los resultados hablan solos. Muy recomendables."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">LC</div>
+          <div>
+            <div class="testi-name">Laura C.</div>
+            <div class="testi-role">Arquitecta · Rosario</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="testi-label" style="margin-top:3rem">PyMEs y empresas</div>
+    <div class="testi-grid">
+
+      <div class="testi-card testi-card--pyme">
+        <div class="testi-sector">Cadena de cafeterías</div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Teníamos excedentes de caja que no sabíamos cómo capitalizar. Standard Finances nos diseñó una estrategia de inversión a corto plazo que hoy nos genera un rendimiento extra sin afectar nuestra operación diaria."</p>
+        <div class="testi-author">
+          <div class="testi-avatar pyme">☕</div>
+          <div>
+            <div class="testi-name">Dirección Financiera</div>
+            <div class="testi-role">PyME · Sector gastronómico</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-card testi-card--pyme">
+        <div class="testi-sector">Empresa de turismo</div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Trabajar con un negocio que cobra en pesos y necesita dólares para operar era un dolor de cabeza. Con su asesoría logramos cubrirnos del tipo de cambio y ordenar nuestra estructura financiera de forma profesional."</p>
+        <div class="testi-author">
+          <div class="testi-avatar pyme">✈️</div>
+          <div>
+            <div class="testi-name">Gerencia General</div>
+            <div class="testi-role">PyME · Sector turismo</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-card testi-card--pyme">
+        <div class="testi-sector">Importadores</div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"El contexto cambiario argentino nos generaba mucha incertidumbre. Standard Finances nos ayudó a planificar nuestras compras al exterior con una estrategia financiera que redujo el riesgo y mejoró nuestra rentabilidad."</p>
+        <div class="testi-author">
+          <div class="testi-avatar pyme">📦</div>
+          <div>
+            <div class="testi-name">Área Administrativa</div>
+            <div class="testi-role">PyME · Sector importación</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- WHATSAPP FLOAT -->
+  <a class="wa-float" href="https://wa.me/5491140399204?text=Hola%2C%20me%20interesa%20recibir%20informaci%C3%B3n%20sobre%20sus%20servicios%20financieros." target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.532 5.862L.057 23.25a.75.75 0 00.916.914l5.453-1.46A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.699-.504-5.25-1.385l-.375-.214-3.886 1.04 1.07-3.799-.234-.386A9.96 9.96 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+    Consultar por WhatsApp
+  </a>
+
+  <footer>
+    <div class="footer-brand">Standard<span>.</span>Finances S.A.S</div>
+    <div class="footer-links">
+      <a href="#servicios">Servicios</a>
+      <a href="#nosotros">Nosotros</a>
+      <a href="#testimonios">Testimonios</a>
+      <a href="#contacto">Contacto</a>
+    </div>
+    <div class="footer-copy">© 2025 Standard Finances S.A.S. Todos los derechos reservados.</div>
+  </footer>
+
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    window.addEventListener('scroll', () => {
+      document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40);
+    });
+
+    async function handleSubmit() {
+      const nombre = document.getElementById('nombre').value.trim();
+      const apellido = document.getElementById('apellido').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const telefono = document.getElementById('telefono').value.trim();
+      const servicio = document.getElementById('servicio').value;
+      const mensaje = document.getElementById('mensaje').value.trim();
+
+      if (!nombre || !email || !servicio) {
+        alert('Por favor completá los campos obligatorios: Nombre, Email y Servicio.');
+        return;
+      }
+
+      const btn = document.querySelector('.form-submit');
+      btn.textContent = 'Enviando...';
+      btn.disabled = true;
+
+      // Send to Formspree
+      try {
+        await fetch('https://formspree.io/f/mbdzopad', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify({
+            nombre: nombre + (apellido ? ' ' + apellido : ''),
+            email,
+            telefono: telefono || '—',
+            servicio,
+            mensaje: mensaje || '—'
+          })
+        });
+      } catch(e) { /* silent — WhatsApp still opens */ }
+
+      // Open WhatsApp with prefilled message
+      const waText = encodeURIComponent(
+        `Hola Standard Finances, me contacto desde el sitio web.\n\n` +
+        `*Nombre:* ${nombre}${apellido ? ' ' + apellido : ''}\n` +
+        `*Email:* ${email}\n` +
+        (telefono ? `*Teléfono:* ${telefono}\n` : '') +
+        `*Servicio de interés:* ${servicio}\n` +
+        (mensaje ? `*Consulta:* ${mensaje}` : '')
+      );
+      window.open(`https://wa.me/5491140399204?text=${waText}`, '_blank');
+
+      // Show success screen
+      document.getElementById('formContainer').style.display = 'none';
+      document.getElementById('formSuccess').style.display = 'block';
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.style.opacity = '1'; e.target.style.transform = 'translateY(0)'; }
+      });
+    }, { threshold: 0.08 });
+
+    document.querySelectorAll('.service-card, .pillar, .stat-item, .testi-card').forEach(el => {
+      el.style.opacity = '0'; el.style.transform = 'translateY(18px)';
+      el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>
