@@ -139,95 +139,27 @@
     .footer-copy { font-size: 0.74rem; color: rgba(255,255,255,0.25); }
 
     /* TESTIMONIALS */
-    #testimonios {
-      padding: 7rem 6vw;
-      background: var(--off-white);
-      border-top: 1px solid var(--light);
-    }
-
-    .testi-label {
-      font-size: 0.7rem; font-weight: 500; letter-spacing: 0.12em;
-      text-transform: uppercase; color: var(--blue-dark);
-      margin-bottom: 1.5rem;
-      display: flex; align-items: center; gap: 0.8rem;
-    }
+    #testimonios { padding: 7rem 6vw; background: var(--off-white); border-top: 1px solid var(--light); }
+    .testi-label { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--blue-dark); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.8rem; }
     .testi-label::before { content: ''; display: block; width: 20px; height: 1px; background: var(--blue-dark); }
-
-    .testi-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.2rem;
-      margin-bottom: 1rem;
-    }
-
-    .testi-card {
-      background: var(--white);
-      border: 1px solid var(--light);
-      padding: 2rem 2rem 1.8rem;
-      display: flex; flex-direction: column; gap: 1rem;
-      transition: box-shadow 0.3s, transform 0.3s;
-      position: relative;
-    }
-    .testi-card:hover {
-      box-shadow: 0 8px 32px rgba(15,45,107,0.09);
-      transform: translateY(-3px);
-    }
+    .testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; margin-bottom: 1rem; }
+    .testi-card { background: var(--white); border: 1px solid var(--light); padding: 2rem 2rem 1.8rem; display: flex; flex-direction: column; gap: 1rem; transition: box-shadow 0.3s, transform 0.3s; position: relative; }
+    .testi-card:hover { box-shadow: 0 8px 32px rgba(15,45,107,0.09); transform: translateY(-3px); }
     .testi-card--pyme { border-top: 2px solid var(--gold); }
-
-    .testi-sector {
-      font-size: 0.68rem; font-weight: 500; letter-spacing: 0.1em;
-      text-transform: uppercase; color: var(--gold);
-    }
-
+    .testi-sector { font-size: 0.68rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); }
     .testi-stars { color: var(--gold); font-size: 0.85rem; letter-spacing: 0.1em; }
-
-    .testi-text {
-      font-size: 0.88rem; font-weight: 300; line-height: 1.85;
-      color: var(--text); flex: 1;
-      font-style: italic;
-    }
-
-    .testi-author {
-      display: flex; align-items: center; gap: 0.9rem;
-      padding-top: 1rem;
-      border-top: 1px solid var(--light);
-    }
-
-    .testi-avatar {
-      width: 38px; height: 38px; flex-shrink: 0;
-      background: var(--blue-dark);
-      color: var(--white);
-      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.04em;
-      display: flex; align-items: center; justify-content: center;
-      border-radius: 2px;
-    }
-    .testi-avatar.pyme {
-      background: rgba(184,151,78,0.12);
-      font-size: 1.1rem;
-    }
-
+    .testi-text { font-size: 0.88rem; font-weight: 300; line-height: 1.85; color: var(--text); flex: 1; font-style: italic; }
+    .testi-author { display: flex; align-items: center; gap: 0.9rem; padding-top: 1rem; border-top: 1px solid var(--light); }
+    .testi-avatar { width: 38px; height: 38px; flex-shrink: 0; background: var(--blue-dark); color: var(--white); font-size: 0.72rem; font-weight: 600; letter-spacing: 0.04em; display: flex; align-items: center; justify-content: center; border-radius: 2px; }
+    .testi-avatar.pyme { background: rgba(184,151,78,0.12); font-size: 1.1rem; }
     .testi-name { font-size: 0.84rem; font-weight: 500; color: var(--ink); }
     .testi-role { font-size: 0.74rem; color: var(--muted); margin-top: 0.1rem; }
 
     /* WHATSAPP BUTTON */
-    .wa-float {
-      position: fixed; bottom: 2rem; right: 2rem; z-index: 200;
-      display: flex; align-items: center; gap: 0.7rem;
-      background: #25D366; color: white;
-      padding: 0.75rem 1.2rem 0.75rem 0.9rem;
-      border-radius: 50px;
-      box-shadow: 0 4px 20px rgba(37,211,102,0.4);
-      text-decoration: none; font-size: 0.82rem; font-weight: 500;
-      letter-spacing: 0.02em;
-      transition: transform 0.2s, box-shadow 0.2s;
-      animation: waPulse 2.5s 3s ease infinite;
-    }
+    .wa-float { position: fixed; bottom: 2rem; right: 2rem; z-index: 200; display: flex; align-items: center; gap: 0.7rem; background: #25D366; color: white; padding: 0.75rem 1.2rem 0.75rem 0.9rem; border-radius: 50px; box-shadow: 0 4px 20px rgba(37,211,102,0.4); text-decoration: none; font-size: 0.82rem; font-weight: 500; letter-spacing: 0.02em; transition: transform 0.2s, box-shadow 0.2s; animation: waPulse 2.5s 3s ease infinite; }
     .wa-float:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(37,211,102,0.5); animation: none; }
     .wa-float svg { width: 22px; height: 22px; flex-shrink: 0; }
-    @keyframes waPulse {
-      0%, 100% { box-shadow: 0 4px 20px rgba(37,211,102,0.4); }
-      50% { box-shadow: 0 4px 30px rgba(37,211,102,0.7); }
-    }
+    @keyframes waPulse { 0%, 100% { box-shadow: 0 4px 20px rgba(37,211,102,0.4); } 50% { box-shadow: 0 4px 30px rgba(37,211,102,0.7); } }
 
     /* ANIMATIONS */
     @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
@@ -241,27 +173,12 @@
     .novedades-sidebar { position: sticky; top: 6rem; }
     .sidebar-label { font-size: 0.68rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 1rem; }
     .semanas-list { display: flex; flex-direction: column; gap: 0.3rem; }
-    .semana-btn {
-      text-align: left; background: none; border: none; cursor: pointer;
-      font-family: 'DM Sans', sans-serif; font-size: 0.82rem; color: var(--muted);
-      padding: 0.55rem 0.8rem; border-left: 2px solid var(--light);
-      transition: color 0.2s, border-color 0.2s, background 0.2s;
-      line-height: 1.4;
-    }
+    .semana-btn { text-align: left; background: none; border: none; cursor: pointer; font-family: 'DM Sans', sans-serif; font-size: 0.82rem; color: var(--muted); padding: 0.55rem 0.8rem; border-left: 2px solid var(--light); transition: color 0.2s, border-color 0.2s, background 0.2s; line-height: 1.4; }
     .semana-btn:hover { color: var(--text); border-left-color: var(--mid); background: var(--off-white); }
     .semana-btn.active { color: var(--blue-dark); border-left-color: var(--gold); font-weight: 500; background: rgba(184,151,78,0.05); }
     .novedades-feed { display: flex; flex-direction: column; gap: 0; }
-    .noticia-card {
-      border: 1px solid var(--light); padding: 2rem 2.2rem;
-      position: relative; overflow: hidden;
-      transition: border-color 0.25s, box-shadow 0.25s;
-      margin-bottom: 1px;
-    }
-    .noticia-card::before {
-      content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
-      background: linear-gradient(180deg, var(--blue-soft), var(--accent));
-      opacity: 0; transition: opacity 0.3s;
-    }
+    .noticia-card { border: 1px solid var(--light); padding: 2rem 2.2rem; position: relative; overflow: hidden; transition: border-color 0.25s, box-shadow 0.25s; margin-bottom: 1px; }
+    .noticia-card::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: linear-gradient(180deg, var(--blue-soft), var(--accent)); opacity: 0; transition: opacity 0.3s; }
     .noticia-card:hover { border-color: var(--mid); box-shadow: 0 4px 20px rgba(15,45,107,0.06); }
     .noticia-card:hover::before { opacity: 1; }
     .noticia-semana { font-size: 0.68rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.8rem; }
@@ -274,6 +191,7 @@
     .novedades-empty-title { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: var(--ink); margin-bottom: 0.5rem; }
     .novedades-empty-text { font-size: 0.84rem; color: var(--muted); font-weight: 300; line-height: 1.7; }
     .novedades-loading { text-align: center; padding: 3rem; color: var(--muted); font-size: 0.84rem; }
+
     @media (max-width: 960px) {
       .novedades-layout { grid-template-columns: 1fr; gap: 2rem; }
       .novedades-sidebar { position: static; }
@@ -281,8 +199,6 @@
       .semana-btn { border-left: none; border-bottom: 2px solid var(--light); }
       .semana-btn.active { border-left: none; border-bottom-color: var(--gold); }
     }
-
-  
     @media (max-width: 960px) {
       #hero { grid-template-columns: 1fr; padding-top: 6rem; }
       .hero-visual { display: none; }
@@ -445,7 +361,7 @@
       <div class="contact-details">
         <div class="contact-item">
           <div class="contact-ico"><svg viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
-          <span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="ec9f988d82888d9e888a85828d828f899f8d9fac8b818d8580c28f8381">[email&#160;protected]</a></span>
+          <span>contacto@standardfinances.com.ar</span>
         </div>
         <div class="contact-item">
           <div class="contact-ico"><svg viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.22 1.18 2 2 0 012.18 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.18 6.18l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div>
@@ -484,7 +400,7 @@
       <div class="form-success" id="formSuccess">
         <div class="form-success-icon">✓</div>
         <div class="form-success-title">¡Gracias por tu consulta!</div>
-        <div class="form-success-text">Se abrió WhatsApp con tu consulta lista para enviar. También podés escribirnos a <strong><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="453631242b21243721232c2b242b2620362436052228242c296b262a28">[email&#160;protected]</a></strong>.</div>
+        <div class="form-success-text">Se abrió WhatsApp con tu consulta lista para enviar. También podés escribirnos a <strong>contacto@standardfinances.com.ar</strong>.</div>
       </div>
     </div>
   </section>
@@ -510,90 +426,62 @@
   <section id="testimonios">
     <div class="section-eyebrow">Testimonios</div>
     <h2 class="section-title">Lo que dicen quienes <strong>ya confían en nosotros</strong></h2>
-
     <div class="testi-label">Clientes individuales</div>
     <div class="testi-grid">
-
       <div class="testi-card">
         <div class="testi-stars">★★★★★</div>
         <p class="testi-text">"Llegué a Standard Finances sin saber nada de inversiones. Hoy tengo un portafolio en dólares que rinde por encima de lo que imaginaba. La claridad con la que explican cada decisión hace toda la diferencia."</p>
         <div class="testi-author">
           <div class="testi-avatar">MG</div>
-          <div>
-            <div class="testi-name">Martina G.</div>
-            <div class="testi-role">Profesional independiente · Buenos Aires</div>
-          </div>
+          <div><div class="testi-name">Martina G.</div><div class="testi-role">Profesional independiente · Buenos Aires</div></div>
         </div>
       </div>
-
       <div class="testi-card">
         <div class="testi-stars">★★★★★</div>
         <p class="testi-text">"Lo que más valoro es que siempre están disponibles para explicarme qué pasa con mi inversión. No me venden productos, me asesoran de verdad. Llevo 3 años trabajando con ellos y no me arrepiento."</p>
         <div class="testi-author">
           <div class="testi-avatar">RV</div>
-          <div>
-            <div class="testi-name">Rodrigo V.</div>
-            <div class="testi-role">Médico · Córdoba</div>
-          </div>
+          <div><div class="testi-name">Rodrigo V.</div><div class="testi-role">Médico · Córdoba</div></div>
         </div>
       </div>
-
       <div class="testi-card">
         <div class="testi-stars">★★★★★</div>
         <p class="testi-text">"Me ayudaron a estructurar mi patrimonio personal y a entender cómo protegerlo ante la inflación. El seguimiento es constante y los resultados hablan solos. Muy recomendables."</p>
         <div class="testi-author">
           <div class="testi-avatar">LC</div>
-          <div>
-            <div class="testi-name">Laura C.</div>
-            <div class="testi-role">Arquitecta · Rosario</div>
-          </div>
+          <div><div class="testi-name">Laura C.</div><div class="testi-role">Arquitecta · Rosario</div></div>
         </div>
       </div>
-
     </div>
-
     <div class="testi-label" style="margin-top:3rem">PyMEs y empresas</div>
     <div class="testi-grid">
-
       <div class="testi-card testi-card--pyme">
         <div class="testi-sector">Cadena de cafeterías</div>
         <div class="testi-stars">★★★★★</div>
         <p class="testi-text">"Teníamos excedentes de caja que no sabíamos cómo capitalizar. Standard Finances nos diseñó una estrategia de inversión a corto plazo que hoy nos genera un rendimiento extra sin afectar nuestra operación diaria."</p>
         <div class="testi-author">
           <div class="testi-avatar pyme">☕</div>
-          <div>
-            <div class="testi-name">Dirección Financiera</div>
-            <div class="testi-role">PyME · Sector gastronómico</div>
-          </div>
+          <div><div class="testi-name">Dirección Financiera</div><div class="testi-role">PyME · Sector gastronómico</div></div>
         </div>
       </div>
-
       <div class="testi-card testi-card--pyme">
         <div class="testi-sector">Empresa de turismo</div>
         <div class="testi-stars">★★★★★</div>
         <p class="testi-text">"Trabajar con un negocio que cobra en pesos y necesita dólares para operar era un dolor de cabeza. Con su asesoría logramos cubrirnos del tipo de cambio y ordenar nuestra estructura financiera de forma profesional."</p>
         <div class="testi-author">
           <div class="testi-avatar pyme">✈️</div>
-          <div>
-            <div class="testi-name">Gerencia General</div>
-            <div class="testi-role">PyME · Sector turismo</div>
-          </div>
+          <div><div class="testi-name">Gerencia General</div><div class="testi-role">PyME · Sector turismo</div></div>
         </div>
       </div>
-
       <div class="testi-card testi-card--pyme">
         <div class="testi-sector">Importadores</div>
         <div class="testi-stars">★★★★★</div>
         <p class="testi-text">"El contexto cambiario argentino nos generaba mucha incertidumbre. Standard Finances nos ayudó a planificar nuestras compras al exterior con una estrategia financiera que redujo el riesgo y mejoró nuestra rentabilidad."</p>
         <div class="testi-author">
           <div class="testi-avatar pyme">📦</div>
-          <div>
-            <div class="testi-name">Área Administrativa</div>
-            <div class="testi-role">PyME · Sector importación</div>
-          </div>
+          <div><div class="testi-name">Área Administrativa</div><div class="testi-role">PyME · Sector importación</div></div>
         </div>
       </div>
-
     </div>
   </section>
 
@@ -615,7 +503,7 @@
     <div class="footer-copy">© 2025 Standard Finances S.A.S. Todos los derechos reservados.</div>
   </footer>
 
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  <script>
     // ─── NOVEDADES DEL MERCADO ────────────────────────────
     let allNoticias = [];
     let semanaActiva = null;
@@ -646,7 +534,6 @@
         return;
       }
 
-      // Build sidebar with unique semanas
       const semanas = [...new Set(allNoticias.map(n => n.semana))];
       semanaActiva = semanas[0];
       sideList.innerHTML = semanas.map(s => `
@@ -678,7 +565,6 @@
         </div>
       `).join('');
 
-      // animate in
       feed.querySelectorAll('.noticia-card').forEach((el, i) => {
         el.style.opacity = '0'; el.style.transform = 'translateY(12px)';
         el.style.transition = `opacity 0.4s ${i * 0.08}s ease, transform 0.4s ${i * 0.08}s ease`;
@@ -688,10 +574,12 @@
 
     cargarNoticias();
 
-  
+    // ─── NAVBAR SCROLL ────────────────────────────
+    window.addEventListener('scroll', function() {
       document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40);
     });
 
+    // ─── CONTACT FORM ────────────────────────────
     async function handleSubmit() {
       const nombre = document.getElementById('nombre').value.trim();
       const apellido = document.getElementById('apellido').value.trim();
@@ -709,7 +597,6 @@
       btn.textContent = 'Enviando...';
       btn.disabled = true;
 
-      // Send to Formspree
       try {
         await fetch('https://formspree.io/f/mbdzopad', {
           method: 'POST',
@@ -722,9 +609,8 @@
             mensaje: mensaje || '—'
           })
         });
-      } catch(e) { /* silent — WhatsApp still opens */ }
+      } catch(e) { /* silent */ }
 
-      // Open WhatsApp with prefilled message
       const waText = encodeURIComponent(
         `Hola Standard Finances, me contacto desde el sitio web.\n\n` +
         `*Nombre:* ${nombre}${apellido ? ' ' + apellido : ''}\n` +
@@ -735,11 +621,11 @@
       );
       window.open(`https://wa.me/5491140399204?text=${waText}`, '_blank');
 
-      // Show success screen
       document.getElementById('formContainer').style.display = 'none';
       document.getElementById('formSuccess').style.display = 'block';
     }
 
+    // ─── SCROLL ANIMATIONS ────────────────────────────
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(e => {
         if (e.isIntersecting) { e.target.style.opacity = '1'; e.target.style.transform = 'translateY(0)'; }
