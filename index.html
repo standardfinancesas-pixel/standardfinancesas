@@ -235,7 +235,54 @@
     @keyframes growBar { to { width: 72%; } }
     @keyframes growBarAlt { to { width: 55%; } }
 
-    /* RESPONSIVE */
+    /* NOVEDADES */
+    #novedades { padding: 7rem 6vw; background: var(--white); border-top: 1px solid var(--light); }
+    .novedades-layout { display: grid; grid-template-columns: 280px 1fr; gap: 4rem; align-items: start; margin-top: 3rem; }
+    .novedades-sidebar { position: sticky; top: 6rem; }
+    .sidebar-label { font-size: 0.68rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 1rem; }
+    .semanas-list { display: flex; flex-direction: column; gap: 0.3rem; }
+    .semana-btn {
+      text-align: left; background: none; border: none; cursor: pointer;
+      font-family: 'DM Sans', sans-serif; font-size: 0.82rem; color: var(--muted);
+      padding: 0.55rem 0.8rem; border-left: 2px solid var(--light);
+      transition: color 0.2s, border-color 0.2s, background 0.2s;
+      line-height: 1.4;
+    }
+    .semana-btn:hover { color: var(--text); border-left-color: var(--mid); background: var(--off-white); }
+    .semana-btn.active { color: var(--blue-dark); border-left-color: var(--gold); font-weight: 500; background: rgba(184,151,78,0.05); }
+    .novedades-feed { display: flex; flex-direction: column; gap: 0; }
+    .noticia-card {
+      border: 1px solid var(--light); padding: 2rem 2.2rem;
+      position: relative; overflow: hidden;
+      transition: border-color 0.25s, box-shadow 0.25s;
+      margin-bottom: 1px;
+    }
+    .noticia-card::before {
+      content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
+      background: linear-gradient(180deg, var(--blue-soft), var(--accent));
+      opacity: 0; transition: opacity 0.3s;
+    }
+    .noticia-card:hover { border-color: var(--mid); box-shadow: 0 4px 20px rgba(15,45,107,0.06); }
+    .noticia-card:hover::before { opacity: 1; }
+    .noticia-semana { font-size: 0.68rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.8rem; }
+    .noticia-semana::after { content: ''; flex: 1; height: 1px; background: var(--light); max-width: 60px; }
+    .noticia-tag { font-size: 0.6rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); background: var(--light); padding: 0.18rem 0.55rem; border-radius: 0; }
+    .noticia-titulo { font-family: 'Cormorant Garamond', serif; font-size: 1.45rem; font-weight: 500; color: var(--ink); margin-bottom: 0.9rem; line-height: 1.25; }
+    .noticia-cuerpo { font-size: 0.875rem; font-weight: 300; line-height: 1.85; color: var(--text); white-space: pre-line; }
+    .novedades-empty { text-align: center; padding: 5rem 2rem; }
+    .novedades-empty-icon { width: 56px; height: 56px; margin: 0 auto 1.2rem; background: var(--off-white); border: 1px solid var(--light); display: flex; align-items: center; justify-content: center; }
+    .novedades-empty-title { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: var(--ink); margin-bottom: 0.5rem; }
+    .novedades-empty-text { font-size: 0.84rem; color: var(--muted); font-weight: 300; line-height: 1.7; }
+    .novedades-loading { text-align: center; padding: 3rem; color: var(--muted); font-size: 0.84rem; }
+    @media (max-width: 960px) {
+      .novedades-layout { grid-template-columns: 1fr; gap: 2rem; }
+      .novedades-sidebar { position: static; }
+      .semanas-list { flex-direction: row; flex-wrap: wrap; gap: 0.4rem; }
+      .semana-btn { border-left: none; border-bottom: 2px solid var(--light); }
+      .semana-btn.active { border-left: none; border-bottom-color: var(--gold); }
+    }
+
+  
     @media (max-width: 960px) {
       #hero { grid-template-columns: 1fr; padding-top: 6rem; }
       .hero-visual { display: none; }
@@ -256,6 +303,7 @@
     <ul class="nav-links">
       <li><a href="#servicios">Servicios</a></li>
       <li><a href="#nosotros">Nosotros</a></li>
+      <li><a href="#novedades">Novedades</a></li>
       <li><a href="#testimonios">Testimonios</a></li>
       <li><a href="#contacto">Contacto</a></li>
     </ul>
@@ -441,6 +489,23 @@
     </div>
   </section>
 
+  <!-- NOVEDADES DEL MERCADO -->
+  <section id="novedades">
+    <div class="section-eyebrow">Actualidad financiera</div>
+    <h2 class="section-title">Novedades del <strong>Mercado</strong></h2>
+    <div class="novedades-layout">
+      <div class="novedades-sidebar">
+        <div class="sidebar-label">Archivo semanal</div>
+        <div class="semanas-list" id="semanasList">
+          <div style="font-size:0.8rem;color:var(--muted);font-weight:300">Cargando...</div>
+        </div>
+      </div>
+      <div class="novedades-feed" id="novedadesFeed">
+        <div class="novedades-loading">Cargando novedades...</div>
+      </div>
+    </div>
+  </section>
+
   <!-- TESTIMONIALS -->
   <section id="testimonios">
     <div class="section-eyebrow">Testimonios</div>
@@ -543,6 +608,7 @@
     <div class="footer-links">
       <a href="#servicios">Servicios</a>
       <a href="#nosotros">Nosotros</a>
+      <a href="#novedades">Novedades</a>
       <a href="#testimonios">Testimonios</a>
       <a href="#contacto">Contacto</a>
     </div>
@@ -550,7 +616,79 @@
   </footer>
 
   <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-    window.addEventListener('scroll', () => {
+    // ─── NOVEDADES DEL MERCADO ────────────────────────────
+    let allNoticias = [];
+    let semanaActiva = null;
+
+    async function cargarNoticias() {
+      const feed = document.getElementById('novedadesFeed');
+      const sideList = document.getElementById('semanasList');
+
+      try {
+        const res = await fetch('noticias.json?v=' + Date.now());
+        if (!res.ok) throw new Error();
+        const data = await res.json();
+        allNoticias = data.noticias || [];
+      } catch {
+        allNoticias = [];
+      }
+
+      if (!allNoticias.length) {
+        feed.innerHTML = `
+          <div class="novedades-empty">
+            <div class="novedades-empty-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c0cce6" stroke-width="1.5"><path d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10l6 6v8a2 2 0 01-2 2z"/><polyline points="17 22 17 13 7 13 7 22"/><polyline points="7 2 7 8 15 8"/></svg>
+            </div>
+            <div class="novedades-empty-title">Próximamente</div>
+            <div class="novedades-empty-text">Las novedades semanales del mercado<br/>estarán disponibles aquí muy pronto.</div>
+          </div>`;
+        sideList.innerHTML = '<div style="font-size:0.8rem;color:var(--muted);font-weight:300">Sin entradas aún</div>';
+        return;
+      }
+
+      // Build sidebar with unique semanas
+      const semanas = [...new Set(allNoticias.map(n => n.semana))];
+      semanaActiva = semanas[0];
+      sideList.innerHTML = semanas.map(s => `
+        <button class="semana-btn ${s === semanaActiva ? 'active' : ''}" onclick="filtrarSemana('${s.replace(/'/g,"\\'")}', this)">${s}</button>
+      `).join('');
+
+      renderNoticias(semanaActiva);
+    }
+
+    function filtrarSemana(semana, btn) {
+      semanaActiva = semana;
+      document.querySelectorAll('.semana-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderNoticias(semana);
+    }
+
+    function renderNoticias(semana) {
+      const feed = document.getElementById('novedadesFeed');
+      const items = allNoticias.filter(n => n.semana === semana);
+
+      feed.innerHTML = items.map(n => `
+        <div class="noticia-card">
+          <div class="noticia-semana">
+            ${n.semana}
+            ${n.tags && n.tags.length ? n.tags.map(t => `<span class="noticia-tag">${t}</span>`).join('') : ''}
+          </div>
+          <div class="noticia-titulo">${n.titulo}</div>
+          <div class="noticia-cuerpo">${n.cuerpo}</div>
+        </div>
+      `).join('');
+
+      // animate in
+      feed.querySelectorAll('.noticia-card').forEach((el, i) => {
+        el.style.opacity = '0'; el.style.transform = 'translateY(12px)';
+        el.style.transition = `opacity 0.4s ${i * 0.08}s ease, transform 0.4s ${i * 0.08}s ease`;
+        requestAnimationFrame(() => { el.style.opacity = '1'; el.style.transform = 'translateY(0)'; });
+      });
+    }
+
+    cargarNoticias();
+
+  
       document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40);
     });
 
