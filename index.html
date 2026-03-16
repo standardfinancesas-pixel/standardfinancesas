@@ -75,25 +75,180 @@
     .stat-div { width: 1px; height: 38px; background: var(--mid); }
 
     /* SERVICES */
-    #servicios { padding: 7rem 6vw; background: var(--white); }
+    #servicios {
+      padding: 7rem 6vw;
+      background: var(--ink);
+      position: relative;
+      overflow: hidden;
+    }
+    #servicios::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 55% at 10% 50%, rgba(37,99,235,0.13) 0%, transparent 70%),
+                  radial-gradient(ellipse 45% 50% at 90% 20%, rgba(184,151,78,0.09) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .sf-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+      position: relative;
+      z-index: 1;
+    }
     .section-eyebrow { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.7rem; display: flex; align-items: center; gap: 0.8rem; }
     .section-eyebrow::after { content: ''; display: block; width: 28px; height: 1px; background: var(--gold); }
-    .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.9rem, 3.2vw, 2.8rem); font-weight: 400; color: var(--ink); line-height: 1.2; max-width: 520px; margin-bottom: 3.5rem; }
-    .section-title strong { font-weight: 600; color: var(--blue-dark); }
-    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid var(--light); }
-    .service-card { padding: 2.8rem 2.2rem; border-right: 1px solid var(--light); position: relative; overflow: hidden; transition: background 0.3s; }
-    .service-card:last-child { border-right: none; }
-    .service-card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--blue-soft), var(--accent)); transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease; }
-    .service-card:hover::after { transform: scaleX(1); }
-    .service-card:hover { background: var(--off-white); }
-    .service-num { font-family: 'Cormorant Garamond', serif; font-size: 0.8rem; font-weight: 500; color: var(--mid); letter-spacing: 0.1em; margin-bottom: 1.5rem; }
-    .service-icon-wrap { width: 48px; height: 48px; margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: center; background: rgba(37,99,235,0.07); }
-    .service-icon-wrap svg { width: 24px; height: 24px; }
-    .service-name { font-family: 'Cormorant Garamond', serif; font-size: 1.55rem; font-weight: 500; color: var(--ink); margin-bottom: 0.7rem; line-height: 1.2; }
-    .service-desc { font-size: 0.86rem; font-weight: 300; line-height: 1.8; color: var(--muted); }
-    .service-list { margin-top: 1.4rem; list-style: none; display: flex; flex-direction: column; gap: 0.45rem; }
-    .service-list li { font-size: 0.8rem; color: var(--text); display: flex; align-items: center; gap: 0.6rem; }
-    .service-list li::before { content: ''; width: 4px; height: 4px; background: var(--accent); border-radius: 50%; flex-shrink: 0; }
+    .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 400; color: var(--white); line-height: 1.1; max-width: 520px; margin-bottom: 1.5rem; }
+    .section-title strong { font-weight: 600; color: var(--gold); display: block; }
+    .sf-subtitle {
+      font-size: 1rem; font-weight: 300; font-style: italic;
+      line-height: 1.7; color: rgba(255,255,255,0.6);
+      margin-bottom: 1.5rem;
+      border-left: 2px solid var(--gold);
+      padding-left: 1rem;
+    }
+    .sf-desc {
+      font-size: 0.88rem; font-weight: 300; line-height: 1.9;
+      color: rgba(255,255,255,0.5); margin-bottom: 2rem;
+    }
+    .sf-badge {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      font-size: 0.72rem; font-weight: 500; letter-spacing: 0.1em;
+      text-transform: uppercase; color: rgba(255,255,255,0.6);
+      border: 1px solid rgba(184,151,78,0.35);
+      padding: 0.55rem 1.1rem;
+      margin-top: 0.5rem;
+    }
+    .sf-badge span { color: var(--gold); font-weight: 600; }
+    .sf-items { display: flex; flex-direction: column; gap: 0; }
+    .sf-item {
+      display: flex; gap: 1.2rem; align-items: flex-start;
+      padding: 1.5rem 1.5rem;
+      border: 1px solid rgba(255,255,255,0.06);
+      border-top: none;
+      transition: background 0.3s, border-color 0.3s;
+      cursor: default;
+    }
+    .sf-item:first-child { border-top: 1px solid rgba(255,255,255,0.06); }
+    .sf-item:hover { background: rgba(255,255,255,0.04); border-color: rgba(37,99,235,0.3); }
+    .sf-item-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem; font-weight: 300;
+      color: rgba(37,99,235,0.5); line-height: 1;
+      min-width: 2rem; flex-shrink: 0; margin-top: 0.1rem;
+    }
+    .sf-item-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem; font-weight: 500;
+      color: var(--white); margin-bottom: 0.3rem;
+    }
+    .sf-item-desc {
+      font-size: 0.8rem; font-weight: 300;
+      color: rgba(255,255,255,0.4); line-height: 1.6;
+    }
+    .sf-item-list {
+      margin-top: 0.6rem; list-style: none;
+      display: flex; flex-direction: column; gap: 0.3rem;
+    }
+    .sf-item-list li {
+      font-size: 0.76rem; color: rgba(255,255,255,0.3);
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .sf-item-list li::before {
+      content: ''; width: 3px; height: 3px;
+      background: var(--gold); border-radius: 50%; flex-shrink: 0;
+    }
+    @media (max-width: 960px) {
+      .sf-layout { grid-template-columns: 1fr; gap: 3rem; }
+    }
+
+    /* BUSINESS COACH */
+    #business-coach {
+      padding: 7rem 6vw;
+      background: var(--ink);
+      position: relative;
+      overflow: hidden;
+    }
+    #business-coach::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 50% at 90% 50%, rgba(184,151,78,0.07) 0%, transparent 70%),
+                  radial-gradient(ellipse 40% 60% at 10% 80%, rgba(37,99,235,0.06) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .bc-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+      position: relative;
+      z-index: 1;
+    }
+    .bc-tag {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      font-size: 0.68rem; font-weight: 500; letter-spacing: 0.13em;
+      text-transform: uppercase; color: var(--gold);
+      border: 1px solid rgba(184,151,78,0.3);
+      padding: 0.35rem 0.9rem; margin-bottom: 1.5rem;
+    }
+    .bc-tag::before { content: ''; width: 5px; height: 5px; background: var(--gold); border-radius: 50%; }
+    .bc-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 400; line-height: 1.1;
+      color: var(--white); margin-bottom: 1.2rem;
+    }
+    .bc-title strong { font-weight: 600; display: block; color: var(--gold); }
+    .bc-subtitle {
+      font-size: 1rem; font-weight: 300; font-style: italic;
+      line-height: 1.7; color: rgba(255,255,255,0.6);
+      margin-bottom: 1.5rem;
+      border-left: 2px solid var(--gold);
+      padding-left: 1rem;
+    }
+    .bc-desc {
+      font-size: 0.88rem; font-weight: 300; line-height: 1.9;
+      color: rgba(255,255,255,0.5); margin-bottom: 2rem;
+    }
+    .bc-badge {
+      display: inline-block;
+      font-size: 0.72rem; font-weight: 500; letter-spacing: 0.07em;
+      color: rgba(255,255,255,0.4);
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 0.5rem 1rem;
+      font-style: italic;
+    }
+    .bc-items { display: flex; flex-direction: column; gap: 0; }
+    .bc-item {
+      display: flex; gap: 1.2rem; align-items: flex-start;
+      padding: 1.3rem 1.5rem;
+      border: 1px solid rgba(255,255,255,0.06);
+      border-top: none;
+      transition: background 0.3s, border-color 0.3s;
+    }
+    .bc-item:first-child { border-top: 1px solid rgba(255,255,255,0.06); }
+    .bc-item:hover { background: rgba(255,255,255,0.03); border-color: rgba(184,151,78,0.2); }
+    .bc-item-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem; font-weight: 300;
+      color: rgba(184,151,78,0.3); line-height: 1;
+      min-width: 2rem; flex-shrink: 0; margin-top: 0.1rem;
+    }
+    .bc-item-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem; font-weight: 500;
+      color: var(--white); margin-bottom: 0.2rem;
+    }
+    .bc-item-desc {
+      font-size: 0.8rem; font-weight: 300;
+      color: rgba(255,255,255,0.4); line-height: 1.6;
+    }
+
+    @media (max-width: 960px) {
+      .bc-layout { grid-template-columns: 1fr; gap: 3rem; }
+    }
 
     /* WHY US */
     #nosotros { padding: 7rem 6vw; background: var(--blue-dark); display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
@@ -139,27 +294,95 @@
     .footer-copy { font-size: 0.74rem; color: rgba(255,255,255,0.25); }
 
     /* TESTIMONIALS */
-    #testimonios { padding: 7rem 6vw; background: var(--off-white); border-top: 1px solid var(--light); }
-    .testi-label { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--blue-dark); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.8rem; }
+    #testimonios {
+      padding: 7rem 6vw;
+      background: var(--off-white);
+      border-top: 1px solid var(--light);
+    }
+
+    .testi-label {
+      font-size: 0.7rem; font-weight: 500; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--blue-dark);
+      margin-bottom: 1.5rem;
+      display: flex; align-items: center; gap: 0.8rem;
+    }
     .testi-label::before { content: ''; display: block; width: 20px; height: 1px; background: var(--blue-dark); }
-    .testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; margin-bottom: 1rem; }
-    .testi-card { background: var(--white); border: 1px solid var(--light); padding: 2rem 2rem 1.8rem; display: flex; flex-direction: column; gap: 1rem; transition: box-shadow 0.3s, transform 0.3s; position: relative; }
-    .testi-card:hover { box-shadow: 0 8px 32px rgba(15,45,107,0.09); transform: translateY(-3px); }
+
+    .testi-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.2rem;
+      margin-bottom: 1rem;
+    }
+
+    .testi-card {
+      background: var(--white);
+      border: 1px solid var(--light);
+      padding: 2rem 2rem 1.8rem;
+      display: flex; flex-direction: column; gap: 1rem;
+      transition: box-shadow 0.3s, transform 0.3s;
+      position: relative;
+    }
+    .testi-card:hover {
+      box-shadow: 0 8px 32px rgba(15,45,107,0.09);
+      transform: translateY(-3px);
+    }
     .testi-card--pyme { border-top: 2px solid var(--gold); }
-    .testi-sector { font-size: 0.68rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); }
+
+    .testi-sector {
+      font-size: 0.68rem; font-weight: 500; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--gold);
+    }
+
     .testi-stars { color: var(--gold); font-size: 0.85rem; letter-spacing: 0.1em; }
-    .testi-text { font-size: 0.88rem; font-weight: 300; line-height: 1.85; color: var(--text); flex: 1; font-style: italic; }
-    .testi-author { display: flex; align-items: center; gap: 0.9rem; padding-top: 1rem; border-top: 1px solid var(--light); }
-    .testi-avatar { width: 38px; height: 38px; flex-shrink: 0; background: var(--blue-dark); color: var(--white); font-size: 0.72rem; font-weight: 600; letter-spacing: 0.04em; display: flex; align-items: center; justify-content: center; border-radius: 2px; }
-    .testi-avatar.pyme { background: rgba(184,151,78,0.12); font-size: 1.1rem; }
+
+    .testi-text {
+      font-size: 0.88rem; font-weight: 300; line-height: 1.85;
+      color: var(--text); flex: 1;
+      font-style: italic;
+    }
+
+    .testi-author {
+      display: flex; align-items: center; gap: 0.9rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--light);
+    }
+
+    .testi-avatar {
+      width: 38px; height: 38px; flex-shrink: 0;
+      background: var(--blue-dark);
+      color: var(--white);
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.04em;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 2px;
+    }
+    .testi-avatar.pyme {
+      background: rgba(184,151,78,0.12);
+      font-size: 1.1rem;
+    }
+
     .testi-name { font-size: 0.84rem; font-weight: 500; color: var(--ink); }
     .testi-role { font-size: 0.74rem; color: var(--muted); margin-top: 0.1rem; }
 
     /* WHATSAPP BUTTON */
-    .wa-float { position: fixed; bottom: 2rem; right: 2rem; z-index: 200; display: flex; align-items: center; gap: 0.7rem; background: #25D366; color: white; padding: 0.75rem 1.2rem 0.75rem 0.9rem; border-radius: 50px; box-shadow: 0 4px 20px rgba(37,211,102,0.4); text-decoration: none; font-size: 0.82rem; font-weight: 500; letter-spacing: 0.02em; transition: transform 0.2s, box-shadow 0.2s; animation: waPulse 2.5s 3s ease infinite; }
+    .wa-float {
+      position: fixed; bottom: 2rem; right: 2rem; z-index: 200;
+      display: flex; align-items: center; gap: 0.7rem;
+      background: #25D366; color: white;
+      padding: 0.75rem 1.2rem 0.75rem 0.9rem;
+      border-radius: 50px;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+      text-decoration: none; font-size: 0.82rem; font-weight: 500;
+      letter-spacing: 0.02em;
+      transition: transform 0.2s, box-shadow 0.2s;
+      animation: waPulse 2.5s 3s ease infinite;
+    }
     .wa-float:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(37,211,102,0.5); animation: none; }
     .wa-float svg { width: 22px; height: 22px; flex-shrink: 0; }
-    @keyframes waPulse { 0%, 100% { box-shadow: 0 4px 20px rgba(37,211,102,0.4); } 50% { box-shadow: 0 4px 30px rgba(37,211,102,0.7); } }
+    @keyframes waPulse {
+      0%, 100% { box-shadow: 0 4px 20px rgba(37,211,102,0.4); }
+      50% { box-shadow: 0 4px 30px rgba(37,211,102,0.7); }
+    }
 
     /* ANIMATIONS */
     @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
@@ -173,12 +396,27 @@
     .novedades-sidebar { position: sticky; top: 6rem; }
     .sidebar-label { font-size: 0.68rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 1rem; }
     .semanas-list { display: flex; flex-direction: column; gap: 0.3rem; }
-    .semana-btn { text-align: left; background: none; border: none; cursor: pointer; font-family: 'DM Sans', sans-serif; font-size: 0.82rem; color: var(--muted); padding: 0.55rem 0.8rem; border-left: 2px solid var(--light); transition: color 0.2s, border-color 0.2s, background 0.2s; line-height: 1.4; }
+    .semana-btn {
+      text-align: left; background: none; border: none; cursor: pointer;
+      font-family: 'DM Sans', sans-serif; font-size: 0.82rem; color: var(--muted);
+      padding: 0.55rem 0.8rem; border-left: 2px solid var(--light);
+      transition: color 0.2s, border-color 0.2s, background 0.2s;
+      line-height: 1.4;
+    }
     .semana-btn:hover { color: var(--text); border-left-color: var(--mid); background: var(--off-white); }
     .semana-btn.active { color: var(--blue-dark); border-left-color: var(--gold); font-weight: 500; background: rgba(184,151,78,0.05); }
     .novedades-feed { display: flex; flex-direction: column; gap: 0; }
-    .noticia-card { border: 1px solid var(--light); padding: 2rem 2.2rem; position: relative; overflow: hidden; transition: border-color 0.25s, box-shadow 0.25s; margin-bottom: 1px; }
-    .noticia-card::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: linear-gradient(180deg, var(--blue-soft), var(--accent)); opacity: 0; transition: opacity 0.3s; }
+    .noticia-card {
+      border: 1px solid var(--light); padding: 2rem 2.2rem;
+      position: relative; overflow: hidden;
+      transition: border-color 0.25s, box-shadow 0.25s;
+      margin-bottom: 1px;
+    }
+    .noticia-card::before {
+      content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
+      background: linear-gradient(180deg, var(--blue-soft), var(--accent));
+      opacity: 0; transition: opacity 0.3s;
+    }
     .noticia-card:hover { border-color: var(--mid); box-shadow: 0 4px 20px rgba(15,45,107,0.06); }
     .noticia-card:hover::before { opacity: 1; }
     .noticia-semana { font-size: 0.68rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.8rem; }
@@ -191,7 +429,6 @@
     .novedades-empty-title { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: var(--ink); margin-bottom: 0.5rem; }
     .novedades-empty-text { font-size: 0.84rem; color: var(--muted); font-weight: 300; line-height: 1.7; }
     .novedades-loading { text-align: center; padding: 3rem; color: var(--muted); font-size: 0.84rem; }
-
     @media (max-width: 960px) {
       .novedades-layout { grid-template-columns: 1fr; gap: 2rem; }
       .novedades-sidebar { position: static; }
@@ -199,6 +436,8 @@
       .semana-btn { border-left: none; border-bottom: 2px solid var(--light); }
       .semana-btn.active { border-left: none; border-bottom-color: var(--gold); }
     }
+
+  
     @media (max-width: 960px) {
       #hero { grid-template-columns: 1fr; padding-top: 6rem; }
       .hero-visual { display: none; }
@@ -217,7 +456,8 @@
   <nav id="navbar">
     <a href="#" class="nav-logo">Standard<span>.</span>Finances</a>
     <ul class="nav-links">
-      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#servicios">Asesoría Financiera</a></li>
+      <li><a href="#business-coach">Business Coach</a></li>
       <li><a href="#nosotros">Nosotros</a></li>
       <li><a href="#novedades">Novedades</a></li>
       <li><a href="#testimonios">Testimonios</a></li>
@@ -241,7 +481,7 @@
       </p>
       <div class="hero-actions">
         <a href="#contacto" class="btn-primary">Comenzar ahora</a>
-        <a href="#servicios" class="btn-ghost">Ver servicios</a>
+        <a href="#servicios" class="btn-ghost">Ver asesoría</a>
       </div>
     </div>
     <div class="hero-visual">
@@ -279,50 +519,121 @@
   </div>
 
   <section id="servicios">
-    <div class="section-eyebrow">Lo que hacemos</div>
-    <h2 class="section-title">Servicios diseñados para <strong>hacer crecer tu capital</strong></h2>
-    <div class="services-grid">
-      <div class="service-card">
-        <div class="service-num">01</div>
-        <div class="service-icon-wrap">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-        </div>
-        <div class="service-name">Asesoría Financiera</div>
-        <div class="service-desc">Diagnóstico completo de tu situación financiera y elaboración de una estrategia a medida para alcanzar tus objetivos.</div>
-        <ul class="service-list">
-          <li>Planificación financiera personal y empresarial</li>
-          <li>Análisis de riesgo y perfil inversor</li>
-          <li>Seguimiento y ajuste continuo</li>
-          <li>Asesoría fiscal y patrimonial</li>
-        </ul>
+    <div class="sf-layout">
+      <div>
+        <div class="section-eyebrow">Finanzas &amp; Inversiones</div>
+        <h2 class="section-title">Hacemos crecer<br><strong>tu capital</strong></h2>
+        <p class="sf-subtitle">Gestionamos tu patrimonio con rigor, transparencia y una estrategia diseñada para vos.</p>
+        <p class="sf-desc">Somos Agente IFA 5947 de Balanz Capital Valores S.A.U., lo que nos permite operar en los mercados de capitales con el respaldo de una de las principales sociedades de bolsa del país. Además, a través de nuestro departamento de Crédito Privado, conectamos inversores con PyMEs que buscan financiamiento — generando rendimientos reales para ambas partes.</p>
+        <div class="sf-badge">IFA <span>5947</span> · Balanz Capital Valores S.A.U.</div>
       </div>
-      <div class="service-card">
-        <div class="service-num">02</div>
-        <div class="service-icon-wrap">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="1.5"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+      <div class="sf-items">
+        <div class="sf-item">
+          <div class="sf-item-num">01</div>
+          <div>
+            <div class="sf-item-title">Asesoría Financiera</div>
+            <div class="sf-item-desc">Diagnóstico completo de tu situación y estrategia a medida para alcanzar tus objetivos.</div>
+            <ul class="sf-item-list">
+              <li>Planificación financiera personal y empresarial</li>
+              <li>Análisis de riesgo y perfil inversor</li>
+              <li>Seguimiento y ajuste continuo</li>
+            </ul>
+          </div>
         </div>
-        <div class="service-name">Inversiones y Patrimonio</div>
-        <div class="service-desc">Construcción y gestión de portafolios diversificados que maximizan el rendimiento y protegen tu capital a largo plazo.</div>
-        <ul class="service-list">
-          <li>Acciones, bonos y activos alternativos</li>
-          <li>Diversificación internacional</li>
-          <li>Gestión activa y pasiva de portafolios</li>
-          <li>Reportes de rendimiento periódicos</li>
-        </ul>
+        <div class="sf-item">
+          <div class="sf-item-num">02</div>
+          <div>
+            <div class="sf-item-title">Inversiones y Patrimonio</div>
+            <div class="sf-item-desc">Portafolios diversificados que maximizan el rendimiento y protegen tu capital a largo plazo.</div>
+            <ul class="sf-item-list">
+              <li>Acciones, bonos y activos alternativos</li>
+              <li>Diversificación internacional</li>
+              <li>Gestión activa y pasiva de portafolios</li>
+            </ul>
+          </div>
+        </div>
+        <div class="sf-item">
+          <div class="sf-item-num">03</div>
+          <div>
+            <div class="sf-item-title">Crédito Privado</div>
+            <div class="sf-item-desc">Conectamos inversores con PyMEs que necesitan financiamiento, estructurando operaciones con rendimientos competitivos.</div>
+            <ul class="sf-item-list">
+              <li>Estructuración de operaciones a medida</li>
+              <li>Análisis de riesgo crediticio</li>
+              <li>Seguimiento de cada operación</li>
+            </ul>
+          </div>
+        </div>
+        <div class="sf-item">
+          <div class="sf-item-num">04</div>
+          <div>
+            <div class="sf-item-title">Planificación Patrimonial</div>
+            <div class="sf-item-desc">Estructuración y protección de tu patrimonio para su preservación y transferencia generacional.</div>
+            <ul class="sf-item-list">
+              <li>Estructuras societarias y fideicomisos</li>
+              <li>Planificación sucesoria</li>
+              <li>Optimización tributaria</li>
+            </ul>
+          </div>
+        </div>
       </div>
-      <div class="service-card">
-        <div class="service-num">03</div>
-        <div class="service-icon-wrap">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+    </div>
+  </section>
+
+  <!-- BUSINESS COACH -->
+  <div style="height:3px; background: linear-gradient(90deg, var(--blue-dark), var(--gold), var(--blue-dark));"></div>
+  <section id="business-coach">
+    <div class="bc-layout">
+      <div>
+        <div class="bc-tag">Consultoría Empresarial</div>
+        <h2 class="bc-title">Business<br><strong>Coach</strong></h2>
+        <p class="bc-subtitle">Miramos tu empresa con ojos frescos y te decimos exactamente qué está frenando tu crecimiento — y cómo solucionarlo.</p>
+        <p class="bc-desc">Muchas empresas tienen potencial sin explotar que no se ve desde adentro. Nuestro equipo realiza un diagnóstico comercial completo de tu negocio, identifica los puntos de fuga y diseña un plan de acción concreto, realista y ejecutable para mejorar tus números.<br><br>No vendemos informes. Trabajamos con vos hasta que los cambios se implementen.</p>
+        <div class="bc-badge">Ideal para PyMEs y empresas medianas que quieren ordenarse, escalar o salir de un estancamiento.</div>
+      </div>
+      <div class="bc-items">
+        <div class="bc-item">
+          <div class="bc-item-num">01</div>
+          <div>
+            <div class="bc-item-title">Diagnóstico comercial integral</div>
+            <div class="bc-item-desc">Análisis completo de tu empresa: estructura, operación, finanzas y mercado.</div>
+          </div>
         </div>
-        <div class="service-name">Planificación Patrimonial</div>
-        <div class="service-desc">Estructuración y protección de tu patrimonio para asegurar su preservación y transferencia generacional con eficiencia.</div>
-        <ul class="service-list">
-          <li>Estructuras societarias y fideicomisos</li>
-          <li>Planificación sucesoria</li>
-          <li>Protección de activos</li>
-          <li>Optimización tributaria</li>
-        </ul>
+        <div class="bc-item">
+          <div class="bc-item-num">02</div>
+          <div>
+            <div class="bc-item-title">Optimización de costos y proveedores</div>
+            <div class="bc-item-desc">Detectamos dónde se escapa la plata y negociamos mejores condiciones con tu cadena de abastecimiento.</div>
+          </div>
+        </div>
+        <div class="bc-item">
+          <div class="bc-item-num">03</div>
+          <div>
+            <div class="bc-item-title">Estrategias de ventas y márgenes</div>
+            <div class="bc-item-desc">Revisamos tu propuesta comercial, precios y canales para maximizar la rentabilidad.</div>
+          </div>
+        </div>
+        <div class="bc-item">
+          <div class="bc-item-num">04</div>
+          <div>
+            <div class="bc-item-title">Reestructuración de deudas</div>
+            <div class="bc-item-desc">Ordenamos el pasivo, priorizamos compromisos y diseñamos un esquema de pago viable.</div>
+          </div>
+        </div>
+        <div class="bc-item">
+          <div class="bc-item-num">05</div>
+          <div>
+            <div class="bc-item-title">Mejora de rendimientos operativos</div>
+            <div class="bc-item-desc">Identificamos ineficiencias en los procesos internos que impactan directamente en el resultado.</div>
+          </div>
+        </div>
+        <div class="bc-item">
+          <div class="bc-item-num">06</div>
+          <div>
+            <div class="bc-item-title">Plan de acción con métricas</div>
+            <div class="bc-item-desc">Entregamos un roadmap ejecutable con indicadores claros para medir el avance.</div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -360,6 +671,10 @@
       <p class="contact-desc">Completá el formulario y un asesor de Standard Finances se comunicará con vos en menos de 24 horas para una consulta sin cargo.</p>
       <div class="contact-details">
         <div class="contact-item">
+          <div class="contact-ico"><svg viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+          <span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="ec9f988d82888d9e888a85828d828f899f8d9fac8b818d8580c28f8381">[email&#160;protected]</a></span>
+        </div>
+        <div class="contact-item">
           <div class="contact-ico"><svg viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.22 1.18 2 2 0 012.18 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.18 6.18l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div>
           <span>+54 9 11 4039-9204</span>
         </div>
@@ -396,7 +711,7 @@
       <div class="form-success" id="formSuccess">
         <div class="form-success-icon">✓</div>
         <div class="form-success-title">¡Gracias por tu consulta!</div>
-        <div class="form-success-text">Se abrió WhatsApp con tu consulta lista para enviar. Un asesor se comunicará con vos a la brevedad.</div>
+        <div class="form-success-text">Se abrió WhatsApp con tu consulta lista para enviar. También podés escribirnos a <strong><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="453631242b21243721232c2b242b2620362436052228242c296b262a28">[email&#160;protected]</a></strong>.</div>
       </div>
     </div>
   </section>
@@ -422,66 +737,121 @@
   <section id="testimonios">
     <div class="section-eyebrow">Testimonios</div>
     <h2 class="section-title">Lo que dicen quienes <strong>ya confían en nosotros</strong></h2>
+
     <div class="testi-label">Clientes individuales</div>
     <div class="testi-grid">
+
       <div class="testi-card">
         <div class="testi-stars">★★★★★</div>
         <p class="testi-text">"Llegué a Standard Finances sin saber nada de inversiones. Hoy tengo un portafolio en dólares que rinde por encima de lo que imaginaba. La claridad con la que explican cada decisión hace toda la diferencia."</p>
         <div class="testi-author">
           <div class="testi-avatar">MG</div>
-          <div><div class="testi-name">Martina G.</div><div class="testi-role">Profesional independiente · Buenos Aires</div></div>
+          <div>
+            <div class="testi-name">Martina G.</div>
+            <div class="testi-role">Profesional independiente · Buenos Aires</div>
+          </div>
         </div>
       </div>
+
       <div class="testi-card">
         <div class="testi-stars">★★★★★</div>
         <p class="testi-text">"Lo que más valoro es que siempre están disponibles para explicarme qué pasa con mi inversión. No me venden productos, me asesoran de verdad. Llevo 3 años trabajando con ellos y no me arrepiento."</p>
         <div class="testi-author">
           <div class="testi-avatar">RV</div>
-          <div><div class="testi-name">Rodrigo V.</div><div class="testi-role">Médico · Córdoba</div></div>
+          <div>
+            <div class="testi-name">Rodrigo V.</div>
+            <div class="testi-role">Médico · Córdoba</div>
+          </div>
         </div>
       </div>
+
       <div class="testi-card">
         <div class="testi-stars">★★★★★</div>
         <p class="testi-text">"Me ayudaron a estructurar mi patrimonio personal y a entender cómo protegerlo ante la inflación. El seguimiento es constante y los resultados hablan solos. Muy recomendables."</p>
         <div class="testi-author">
           <div class="testi-avatar">LC</div>
-          <div><div class="testi-name">Laura C.</div><div class="testi-role">Arquitecta · Rosario</div></div>
+          <div>
+            <div class="testi-name">Laura C.</div>
+            <div class="testi-role">Arquitecta · Rosario</div>
+          </div>
         </div>
       </div>
+
     </div>
+
     <div class="testi-label" style="margin-top:3rem">PyMEs y empresas</div>
     <div class="testi-grid">
+
       <div class="testi-card testi-card--pyme">
         <div class="testi-sector">Cadena de cafeterías</div>
         <div class="testi-stars">★★★★★</div>
         <p class="testi-text">"Teníamos excedentes de caja que no sabíamos cómo capitalizar. Standard Finances nos diseñó una estrategia de inversión a corto plazo que hoy nos genera un rendimiento extra sin afectar nuestra operación diaria."</p>
         <div class="testi-author">
           <div class="testi-avatar pyme">☕</div>
-          <div><div class="testi-name">Dirección Financiera</div><div class="testi-role">PyME · Sector gastronómico</div></div>
+          <div>
+            <div class="testi-name">Dirección Financiera</div>
+            <div class="testi-role">PyME · Sector gastronómico</div>
+          </div>
         </div>
       </div>
+
       <div class="testi-card testi-card--pyme">
         <div class="testi-sector">Empresa de turismo</div>
         <div class="testi-stars">★★★★★</div>
         <p class="testi-text">"Trabajar con un negocio que cobra en pesos y necesita dólares para operar era un dolor de cabeza. Con su asesoría logramos cubrirnos del tipo de cambio y ordenar nuestra estructura financiera de forma profesional."</p>
         <div class="testi-author">
           <div class="testi-avatar pyme">✈️</div>
-          <div><div class="testi-name">Gerencia General</div><div class="testi-role">PyME · Sector turismo</div></div>
+          <div>
+            <div class="testi-name">Gerencia General</div>
+            <div class="testi-role">PyME · Sector turismo</div>
+          </div>
         </div>
       </div>
+
       <div class="testi-card testi-card--pyme">
         <div class="testi-sector">Importadores</div>
         <div class="testi-stars">★★★★★</div>
         <p class="testi-text">"El contexto cambiario argentino nos generaba mucha incertidumbre. Standard Finances nos ayudó a planificar nuestras compras al exterior con una estrategia financiera que redujo el riesgo y mejoró nuestra rentabilidad."</p>
         <div class="testi-author">
           <div class="testi-avatar pyme">📦</div>
-          <div><div class="testi-name">Área Administrativa</div><div class="testi-role">PyME · Sector importación</div></div>
+          <div>
+            <div class="testi-name">Área Administrativa</div>
+            <div class="testi-role">PyME · Sector importación</div>
+          </div>
         </div>
       </div>
+
+    <div class="testi-label" style="margin-top:3rem">Business Coach</div>
+    <div class="testi-grid">
+
+      <div class="testi-card testi-card--pyme">
+        <div class="testi-sector">Sector construcción</div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Llegamos a Standard Finances con los costos disparados y sin entender por qué no nos cerraban los números. En tres meses reorganizamos la estructura de proveedores, ajustamos precios y el margen mejoró más de lo que esperábamos. Lo más valioso fue tener un plan claro para ejecutar."</p>
+        <div class="testi-author">
+          <div class="testi-avatar pyme">🏗️</div>
+          <div>
+            <div class="testi-name">Diego M.</div>
+            <div class="testi-role">Gerente General · PyME · Sector construcción</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-card testi-card--pyme">
+        <div class="testi-sector">Sector servicios</div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Nosotros veíamos el problema pero no teníamos el enfoque para resolverlo. El equipo de Business Coach nos dio una mirada externa que no tiene precio: identificaron ineficiencias que teníamos naturalizadas y nos dieron herramientas concretas para atacarlas. Hoy operamos de otra manera."</p>
+        <div class="testi-author">
+          <div class="testi-avatar pyme">💼</div>
+          <div>
+            <div class="testi-name">Valeria S.</div>
+            <div class="testi-role">Directora · PyME · Sector servicios</div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </section>
-
-  <!-- WHATSAPP FLOAT -->
   <a class="wa-float" href="https://wa.me/5491140399204?text=Hola%2C%20me%20interesa%20recibir%20informaci%C3%B3n%20sobre%20sus%20servicios%20financieros." target="_blank" rel="noopener">
     <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.532 5.862L.057 23.25a.75.75 0 00.916.914l5.453-1.46A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.699-.504-5.25-1.385l-.375-.214-3.886 1.04 1.07-3.799-.234-.386A9.96 9.96 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
     Consultar por WhatsApp
@@ -490,16 +860,17 @@
   <footer>
     <div class="footer-brand">Standard<span>.</span>Finances S.A.S</div>
     <div class="footer-links">
-      <a href="#servicios">Servicios</a>
+      <a href="#servicios">Asesoría Financiera</a>
+      <a href="#business-coach">Business Coach</a>
       <a href="#nosotros">Nosotros</a>
       <a href="#novedades">Novedades</a>
       <a href="#testimonios">Testimonios</a>
       <a href="#contacto">Contacto</a>
     </div>
-    <div class="footer-copy">© 2025 Standard Finances S.A.S. Todos los derechos reservados.</div>
+    <div class="footer-copy">© 2025 Standard Finances S.A.S. — CUIT: 33-71928936-9 — Todos los derechos reservados.</div>
   </footer>
 
-  <script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     // ─── NOVEDADES DEL MERCADO ────────────────────────────
     let allNoticias = [];
     let semanaActiva = null;
@@ -530,6 +901,7 @@
         return;
       }
 
+      // Build sidebar with unique semanas
       const semanas = [...new Set(allNoticias.map(n => n.semana))];
       semanaActiva = semanas[0];
       sideList.innerHTML = semanas.map(s => `
@@ -561,6 +933,7 @@
         </div>
       `).join('');
 
+      // animate in
       feed.querySelectorAll('.noticia-card').forEach((el, i) => {
         el.style.opacity = '0'; el.style.transform = 'translateY(12px)';
         el.style.transition = `opacity 0.4s ${i * 0.08}s ease, transform 0.4s ${i * 0.08}s ease`;
@@ -570,12 +943,11 @@
 
     cargarNoticias();
 
-    // ─── NAVBAR SCROLL ────────────────────────────
+  
     window.addEventListener('scroll', function() {
       document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40);
     });
 
-    // ─── CONTACT FORM ────────────────────────────
     async function handleSubmit() {
       const nombre = document.getElementById('nombre').value.trim();
       const apellido = document.getElementById('apellido').value.trim();
@@ -593,6 +965,7 @@
       btn.textContent = 'Enviando...';
       btn.disabled = true;
 
+      // Send to Formspree
       try {
         await fetch('https://formspree.io/f/mbdzopad', {
           method: 'POST',
@@ -605,8 +978,9 @@
             mensaje: mensaje || '—'
           })
         });
-      } catch(e) { /* silent */ }
+      } catch(e) { /* silent — WhatsApp still opens */ }
 
+      // Open WhatsApp with prefilled message
       const waText = encodeURIComponent(
         `Hola Standard Finances, me contacto desde el sitio web.\n\n` +
         `*Nombre:* ${nombre}${apellido ? ' ' + apellido : ''}\n` +
@@ -617,11 +991,11 @@
       );
       window.open(`https://wa.me/5491140399204?text=${waText}`, '_blank');
 
+      // Show success screen
       document.getElementById('formContainer').style.display = 'none';
       document.getElementById('formSuccess').style.display = 'block';
     }
 
-    // ─── SCROLL ANIMATIONS ────────────────────────────
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(e => {
         if (e.isIntersecting) { e.target.style.opacity = '1'; e.target.style.transform = 'translateY(0)'; }
