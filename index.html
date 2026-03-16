@@ -163,6 +163,59 @@
       .sf-layout { grid-template-columns: 1fr; gap: 3rem; }
     }
 
+    /* PERFILES DE CLIENTE */
+    #perfiles { padding: 6rem 6vw; background: var(--blue-dark); }
+    .perfiles-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; margin-top: 3rem; border: 1px solid rgba(255,255,255,0.07); }
+    .perfil-card { padding: 2.5rem 2rem; border-right: 1px solid rgba(255,255,255,0.07); position: relative; transition: background 0.3s; }
+    .perfil-card:last-child { border-right: none; }
+    .perfil-card:hover { background: rgba(255,255,255,0.03); }
+    .perfil-card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--blue-soft), var(--gold)); transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease; }
+    .perfil-card:hover::after { transform: scaleX(1); }
+    .perfil-num { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 300; color: rgba(184,151,78,0.25); line-height: 1; margin-bottom: 1.2rem; }
+    .perfil-icon { width: 44px; height: 44px; margin-bottom: 1rem; display: flex; align-items: center; justify-content: center; background: rgba(37,99,235,0.1); }
+    .perfil-title { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 600; color: var(--white); margin-bottom: 0.8rem; line-height: 1.2; }
+    .perfil-desc { font-size: 0.83rem; font-weight: 300; line-height: 1.8; color: rgba(255,255,255,0.45); }
+    .perfil-tag { display: inline-block; font-size: 0.66rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); border: 1px solid rgba(184,151,78,0.3); padding: 0.3rem 0.7rem; margin-bottom: 1.2rem; }
+    @media (max-width: 960px) { .perfiles-grid { grid-template-columns: 1fr; } .perfil-card { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.07); } }
+
+    /* PROBLEMAS TIPICOS */
+    #problemas { padding: 6rem 6vw; background: var(--off-white); }
+    .problemas-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
+    .problema-card { background: var(--white); border: 1px solid var(--light); padding: 2rem 1.8rem; position: relative; overflow: hidden; transition: box-shadow 0.3s, transform 0.2s; }
+    .problema-card:hover { box-shadow: 0 8px 32px rgba(15,45,107,0.09); transform: translateY(-3px); }
+    .problema-card::before { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--blue-soft), var(--accent)); transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease; }
+    .problema-card:hover::before { transform: scaleX(1); }
+    .problema-icon { width: 48px; height: 48px; margin-bottom: 1.2rem; display: flex; align-items: center; justify-content: center; background: rgba(37,99,235,0.06); border: 1px solid rgba(37,99,235,0.1); }
+    .problema-title { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; font-weight: 600; color: var(--ink); margin-bottom: 0.5rem; }
+    .problema-desc { font-size: 0.82rem; font-weight: 300; line-height: 1.75; color: var(--muted); }
+    .problemas-cta { text-align: center; margin-top: 3.5rem; }
+    .problemas-cta p { font-size: 0.95rem; font-weight: 300; color: var(--text); margin-bottom: 1.2rem; font-style: italic; }
+    @media (max-width: 960px) { .problemas-grid { grid-template-columns: 1fr; } }
+
+    /* PARA QUIEN ES */
+    #para-quien { padding: 6rem 6vw; background: var(--white); }
+    .pq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-top: 3rem; }
+    .pq-block { border: 1px solid var(--light); padding: 2.5rem; }
+    .pq-block.si { border-top: 3px solid var(--accent); }
+    .pq-block.no { border-top: 3px solid var(--mid); }
+    .pq-label { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 1.5rem; }
+    .pq-block.si .pq-label { color: var(--accent); }
+    .pq-block.no .pq-label { color: var(--muted); }
+    .pq-item { display: flex; gap: 1rem; align-items: flex-start; margin-bottom: 1.2rem; }
+    .pq-item:last-child { margin-bottom: 0; }
+    .pq-check { width: 32px; height: 32px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; margin-top: 0.1rem; }
+    .pq-item-title { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; font-weight: 600; color: var(--ink); margin-bottom: 0.2rem; }
+    .pq-item-desc { font-size: 0.8rem; font-weight: 300; color: var(--muted); line-height: 1.6; }
+    @media (max-width: 960px) { .pq-grid { grid-template-columns: 1fr; } }
+
+    /* CIERRE ESTRATEGICO */
+    #cierre { padding: 7rem 6vw; background: var(--ink); text-align: center; position: relative; overflow: hidden; }
+    #cierre::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(184,151,78,0.07) 0%, transparent 70%); pointer-events: none; }
+    .cierre-quote { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 400; color: var(--white); line-height: 1.3; max-width: 750px; margin: 0 auto 1.5rem; position: relative; z-index: 1; }
+    .cierre-quote strong { color: var(--gold); font-weight: 600; display: block; }
+    .cierre-sub { font-size: 0.92rem; font-weight: 300; color: rgba(255,255,255,0.45); margin-bottom: 2.5rem; position: relative; z-index: 1; }
+    .cierre-divider { width: 40px; height: 1px; background: var(--gold); margin: 0 auto 2rem; }
+
     /* BUSINESS COACH */
     #business-coach {
       padding: 7rem 6vw;
@@ -458,30 +511,31 @@
     <ul class="nav-links">
       <li><a href="#servicios">Asesoría Financiera</a></li>
       <li><a href="#business-coach">Business Coach</a></li>
+      <li><a href="#para-quien">¿Para quién?</a></li>
       <li><a href="#nosotros">Nosotros</a></li>
       <li><a href="#novedades">Novedades</a></li>
       <li><a href="#testimonios">Testimonios</a></li>
       <li><a href="#contacto">Contacto</a></li>
     </ul>
-    <a href="#contacto" class="nav-cta">Solicitar Asesoría</a>
+    <a href="#contacto" class="nav-cta">Solicitar Consultoría</a>
   </nav>
 
   <section id="hero">
     <div class="hero-bg"></div>
     <div class="hero-grid"></div>
     <div class="hero-content">
-      <div class="hero-badge">Asesoría Financiera Especializada</div>
+      <div class="hero-badge">Consultoría Estratégica Financiera</div>
       <h1 class="hero-title">
-        Tu patrimonio,<br>
-        <strong>en manos expertas.</strong>
-        <em>Decisiones que crecen.</em>
+        Tomás decisiones financieras importantes.<br>
+        <strong>¿Tenés la estrategia para tomarlas bien?</strong>
+        <em>Capital · Inversiones · Negocios.</em>
       </h1>
       <p class="hero-subtitle">
-        En Standard Finances S.A.S acompañamos a personas y empresas a tomar decisiones financieras inteligentes. Inversiones sólidas, planificación patrimonial y asesoría personalizada.
+        Trabajamos con personas que recibieron capital, profesionales que quieren ordenar sus inversiones y empresarios que necesitan claridad financiera en su negocio.
       </p>
       <div class="hero-actions">
-        <a href="#contacto" class="btn-primary">Comenzar ahora</a>
-        <a href="#servicios" class="btn-ghost">Ver asesoría</a>
+        <a href="#contacto" class="btn-primary">Solicitá tu consultoría</a>
+        <a href="#servicios" class="btn-ghost">Ver cómo trabajamos</a>
       </div>
     </div>
     <div class="hero-visual">
@@ -509,22 +563,89 @@
   </section>
 
   <div class="stats-strip">
-    <div class="stat-item"><div class="stat-number">10<span>+</span></div><div class="stat-desc">Años de experiencia</div></div>
+    <div class="stat-item"><div class="stat-number">10<span>+</span></div><div class="stat-desc">Años resolviendo problemas financieros reales</div></div>
     <div class="stat-div"></div>
-    <div class="stat-item"><div class="stat-number">200<span>+</span></div><div class="stat-desc">Clientes activos</div></div>
+    <div class="stat-item"><div class="stat-number">200<span>+</span></div><div class="stat-desc">Empresarios y profesionales asesorados</div></div>
     <div class="stat-div"></div>
-    <div class="stat-item"><div class="stat-number">98<span>%</span></div><div class="stat-desc">Tasa de retención</div></div>
+    <div class="stat-item"><div class="stat-number">98<span>%</span></div><div class="stat-desc">De clientes que renuevan cada año</div></div>
     <div class="stat-div"></div>
-    <div class="stat-item"><div class="stat-number">3<span>+</span></div><div class="stat-desc">Países de operación</div></div>
+    <div class="stat-item"><div class="stat-number">3<span>+</span></div><div class="stat-desc">Mercados donde operamos</div></div>
   </div>
+
+  <section id="problemas">
+    <div class="section-eyebrow" style="color:var(--gold)">¿Te suena familiar?</div>
+    <h2 class="section-title" style="color:var(--ink); max-width:600px">Problemas reales que vemos <strong style="color:var(--blue-dark)">todos los días</strong></h2>
+    <div class="problemas-grid">
+      <div class="problema-card">
+        <div class="problema-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" width="28" height="28"><rect x="2" y="7" width="20" height="14" rx="1"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg></div>
+        <div class="problema-title">Facturás pero no generás caja</div>
+        <div class="problema-desc">Los números cierran en el papel pero a fin de mes no hay liquidez disponible. Las ventas suben y el dinero desaparece.</div>
+      </div>
+      <div class="problema-card">
+        <div class="problema-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" width="28" height="28"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/></svg></div>
+        <div class="problema-title">Tenés capital pero no sabés dónde ponerlo</div>
+        <div class="problema-desc">Tus inversiones no tienen estrategia ni están alineadas con tus objetivos. El dinero está parado o mal asignado.</div>
+      </div>
+      <div class="problema-card">
+        <div class="problema-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" width="28" height="28"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 014-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 01-4 4H3"/></svg></div>
+        <div class="problema-title">Crecés pero los márgenes no mejoran</div>
+        <div class="problema-desc">Más ventas, más costos, mismos resultados. La estructura financiera no acompaña el crecimiento del negocio.</div>
+      </div>
+      <div class="problema-card">
+        <div class="problema-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" width="28" height="28"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div>
+        <div class="problema-title">Deudas y proveedores consumen tu flujo</div>
+        <div class="problema-desc">El pasivo condiciona cada decisión operativa. No podés invertir porque primero tenés que pagar.</div>
+      </div>
+      <div class="problema-card">
+        <div class="problema-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" width="28" height="28"><polyline points="22 17 13.5 8.5 8.5 13.5 2 7"/><polyline points="16 17 22 17 22 11"/></svg></div>
+        <div class="problema-title">Invertís sin información del mercado real</div>
+        <div class="problema-desc">Tomás decisiones financieras sin un análisis profesional detrás. O peor: seguís consejos sin contexto.</div>
+      </div>
+      <div class="problema-card">
+        <div class="problema-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" width="28" height="28"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+        <div class="problema-title">Tu patrimonio personal está mezclado con el negocio</div>
+        <div class="problema-desc">No sabés exactamente qué es tuyo y qué es de la empresa. Todo está entrelazado y eso es un riesgo real.</div>
+      </div>
+    </div>
+    <div class="problemas-cta">
+      <p>Si te identificás con al menos uno, una reunión con nosotros puede cambiar tu perspectiva.</p>
+      <a href="#contacto" class="btn-primary">Solicitá tu consultoría estratégica</a>
+    </div>
+  </section>
+
+  <!-- PERFILES DE CLIENTE -->
+  <section id="perfiles">
+    <div class="section-eyebrow" style="color:var(--gold)">Con quiénes trabajamos</div>
+    <h2 class="section-title" style="color:var(--white); max-width:600px">Tres perfiles. <strong>Un mismo objetivo: claridad financiera.</strong></h2>
+    <div class="perfiles-grid">
+      <div class="perfil-card">
+        <div class="perfil-num">01</div>
+        <div class="perfil-tag">Persona con capital</div>
+        <div class="perfil-title">Recibiste dinero y necesitás una estrategia</div>
+        <div class="perfil-desc">Indemnización, venta de un activo, herencia o años de ahorro. Tenés el capital pero no sabés exactamente qué hacer con él, cómo protegerlo ni cómo hacerlo trabajar a tu favor. El tiempo corre y cada día sin estrategia es un costo invisible.</div>
+      </div>
+      <div class="perfil-card">
+        <div class="perfil-num">02</div>
+        <div class="perfil-tag">Profesional o inversor</div>
+        <div class="perfil-title">Ya invertís, pero tu estrategia está dispersa</div>
+        <div class="perfil-desc">Tenés posiciones en distintos instrumentos pero no hay un hilo conductor. No sabés exactamente cuál es tu riesgo real, qué rinde y qué no, ni cómo está distribuido tu patrimonio. Querés un mapa claro y una estrategia unificada.</div>
+      </div>
+      <div class="perfil-card">
+        <div class="perfil-num">03</div>
+        <div class="perfil-tag">Empresario</div>
+        <div class="perfil-title">Tu empresa opera pero los números no te cierran</div>
+        <div class="perfil-desc">Facturás, crecés, pero la caja no refleja el esfuerzo. Los costos suben, los márgenes se achican y no hay claridad sobre qué está fallando. Necesitás alguien que lea los números desde afuera y te diga qué corregir y cómo.</div>
+      </div>
+    </div>
+  </section>
 
   <section id="servicios">
     <div class="sf-layout">
       <div>
         <div class="section-eyebrow">Finanzas &amp; Inversiones</div>
-        <h2 class="section-title">Hacemos crecer<br><strong>tu capital</strong></h2>
-        <p class="sf-subtitle">Gestionamos tu patrimonio con rigor, transparencia y una estrategia diseñada para vos.</p>
-        <p class="sf-desc">Somos Agente IFA 5947 de Balanz Capital Valores S.A.U., lo que nos permite operar en los mercados de capitales con el respaldo de una de las principales sociedades de bolsa del país. Además, a través de nuestro departamento de Crédito Privado, conectamos inversores con PyMEs que buscan financiamiento — generando rendimientos reales para ambas partes.</p>
+        <h2 class="section-title">Primero entendemos tu realidad.<br><strong>Después diseñamos la estrategia.</strong></h2>
+        <p class="sf-subtitle">No todos los capitales requieren la misma solución. Antes de hablar de instrumentos, entendemos de dónde viene tu dinero, a dónde tiene que llegar y qué riesgos podés tolerar en el camino.</p>
+        <p class="sf-desc">Como Agentes IFA 5947 de Balanz Capital Valores S.A.U., operamos en los mercados de capitales con respaldo institucional. Esto nos permite estructurar estrategias de inversión con acceso a toda la gama de instrumentos disponibles — acciones, bonos, fondos y activos alternativos. A través de nuestro departamento de Crédito Privado, también conectamos inversores con PyMEs que buscan financiamiento, generando oportunidades de rendimiento fuera del circuito tradicional.</p>
         <div class="sf-badge">IFA <span>5947</span> · Balanz Capital Valores S.A.U.</div>
       </div>
       <div class="sf-items">
@@ -638,11 +759,78 @@
     </div>
   </section>
 
+  <section id="para-quien">
+    <div class="section-eyebrow" style="color:var(--gold)">Definí si es para vos</div>
+    <h2 class="section-title" style="max-width:600px">¿Para quién es <strong>este servicio?</strong></h2>
+    <div class="pq-grid">
+      <div class="pq-block si">
+        <div class="pq-label">✅ Es para vos si sos...</div>
+        <div class="pq-item">
+          <div class="pq-check"><svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" width="20" height="20"><rect x="2" y="7" width="20" height="14" rx="1"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg></div>
+          <div>
+            <div class="pq-item-title">Empresario PyME</div>
+            <div class="pq-item-desc">Facturás pero sentís que el dinero no alcanza o no rinde lo que debería. Querés ordenar el negocio y hacerlo más rentable.</div>
+          </div>
+        </div>
+        <div class="pq-item">
+          <div class="pq-check"><svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" width="20" height="20"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+          <div>
+            <div class="pq-item-title">Profesional con capital</div>
+            <div class="pq-item-desc">Médico, abogado, arquitecto, contador. Ahorrás pero no tenés una estrategia de inversión clara alineada a tus objetivos.</div>
+          </div>
+        </div>
+        <div class="pq-item">
+          <div class="pq-check"><svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" width="20" height="20"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></div>
+          <div>
+            <div class="pq-item-title">Empresa en crecimiento</div>
+            <div class="pq-item-desc">Estás escalando y necesitás ordenar tu estructura financiera antes de que el desorden te frene o te exponga a riesgos.</div>
+          </div>
+        </div>
+      </div>
+      <div class="pq-block no">
+        <div class="pq-label">❌ No es para vos si...</div>
+        <div class="pq-item">
+          <div class="pq-check"><svg viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="1.5" width="20" height="20"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
+          <div>
+            <div class="pq-item-title">Buscás resultados inmediatos sin proceso</div>
+            <div class="pq-item-desc">El trabajo real toma tiempo. Si necesitás plata mañana, no somos lo que buscás.</div>
+          </div>
+        </div>
+        <div class="pq-item">
+          <div class="pq-check"><svg viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="1.5" width="20" height="20"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+          <div>
+            <div class="pq-item-title">Querés especular sin análisis de riesgo</div>
+            <div class="pq-item-desc">No acompañamos apuestas ni operaciones sin fundamento. Trabajamos con estrategia, no con suerte.</div>
+          </div>
+        </div>
+        <div class="pq-item">
+          <div class="pq-check"><svg viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="1.5" width="20" height="20"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></div>
+          <div>
+            <div class="pq-item-title">Preferís decidir solo sin asesoramiento</div>
+            <div class="pq-item-desc">Nuestro trabajo requiere que estés dispuesto a revisar tus números con honestidad y trabajar en equipo.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section id="nosotros">
     <div>
       <div class="section-eyebrow" style="color:var(--gold)">Por qué elegirnos</div>
       <h2 class="section-title" style="color:var(--white);max-width:100%">Comprometidos con <strong style="color:rgba(255,255,255,0.5)">tu crecimiento financiero</strong></h2>
       <p class="why-text">Standard Finances S.A.S nació con la convicción de que el asesoramiento financiero de calidad debe estar al alcance de todos. Combinamos experiencia, tecnología y un enfoque 100% personalizado para ayudarte a tomar las mejores decisiones para tu futuro.</p>
+      <div style="margin-top:2.5rem; border:1px solid rgba(255,255,255,0.08); padding:2rem;">
+        <div style="font-size:0.68rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);margin-bottom:0.4rem;">Qué incluye la consultoría estratégica</div>
+        <div style="font-size:0.78rem;color:rgba(255,255,255,0.3);font-weight:300;margin-bottom:1.5rem;font-style:italic;">Un servicio profesional pago. El valor está en la claridad que obtenés y en las decisiones que te permite tomar.</div>
+        <div style="display:flex;flex-direction:column;gap:0.9rem;">
+          <div style="display:flex;gap:0.8rem;align-items:flex-start;font-size:0.84rem;color:rgba(255,255,255,0.6);font-weight:300;line-height:1.5;"><span style="color:var(--gold);flex-shrink:0;">→</span> Análisis de tu situación financiera personal y/o empresarial</div>
+          <div style="display:flex;gap:0.8rem;align-items:flex-start;font-size:0.84rem;color:rgba(255,255,255,0.6);font-weight:300;line-height:1.5;"><span style="color:var(--gold);flex-shrink:0;">→</span> Revisión y diagnóstico de tus inversiones actuales</div>
+          <div style="display:flex;gap:0.8rem;align-items:flex-start;font-size:0.84rem;color:rgba(255,255,255,0.6);font-weight:300;line-height:1.5;"><span style="color:var(--gold);flex-shrink:0;">→</span> Análisis del flujo de caja y estructura del negocio</div>
+          <div style="display:flex;gap:0.8rem;align-items:flex-start;font-size:0.84rem;color:rgba(255,255,255,0.6);font-weight:300;line-height:1.5;"><span style="color:var(--gold);flex-shrink:0;">→</span> Identificación de los puntos críticos que frenan tu rentabilidad</div>
+          <div style="display:flex;gap:0.8rem;align-items:flex-start;font-size:0.84rem;color:rgba(255,255,255,0.6);font-weight:300;line-height:1.5;"><span style="color:var(--gold);flex-shrink:0;">→</span> Hoja de ruta estratégica con próximos pasos concretos</div>
+        </div>
+        <a href="#contacto" class="btn-primary" style="display:inline-block;margin-top:1.8rem;">Solicitá tu consultoría →</a>
+      </div>
     </div>
     <div class="pillars">
       <div class="pillar">
@@ -668,7 +856,7 @@
     <div>
       <div class="section-eyebrow">Contacto</div>
       <h2 class="section-title">Hablemos sobre <strong>tu futuro financiero</strong></h2>
-      <p class="contact-desc">Completá el formulario y un asesor de Standard Finances se comunicará con vos en menos de 24 horas para una consulta sin cargo.</p>
+      <p class="contact-desc">Completá el formulario y un asesor de Standard Finances se comunicará con vos en menos de 24 horas para coordinar tu consultoría estratégica.</p>
       <div class="contact-details">
         <div class="contact-item">
           <div class="contact-ico"><svg viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
@@ -686,7 +874,7 @@
     </div>
 
     <div class="contact-form">
-      <div class="form-title">Solicitar consulta gratuita</div>
+      <div class="form-title">Solicitar consultoría estratégica</div>
       <div id="formContainer">
         <div class="form-row">
           <div class="form-group"><label>Nombre *</label><input type="text" id="nombre" placeholder="Tu nombre" /></div>
@@ -787,7 +975,7 @@
         <div class="testi-stars">★★★★★</div>
         <p class="testi-text">"Teníamos excedentes de caja que no sabíamos cómo capitalizar. Standard Finances nos diseñó una estrategia de inversión a corto plazo que hoy nos genera un rendimiento extra sin afectar nuestra operación diaria."</p>
         <div class="testi-author">
-          <div class="testi-avatar pyme">☕</div>
+          <div class="testi-avatar pyme">CF</div>
           <div>
             <div class="testi-name">Dirección Financiera</div>
             <div class="testi-role">PyME · Sector gastronómico</div>
@@ -800,7 +988,7 @@
         <div class="testi-stars">★★★★★</div>
         <p class="testi-text">"Trabajar con un negocio que cobra en pesos y necesita dólares para operar era un dolor de cabeza. Con su asesoría logramos cubrirnos del tipo de cambio y ordenar nuestra estructura financiera de forma profesional."</p>
         <div class="testi-author">
-          <div class="testi-avatar pyme">✈️</div>
+          <div class="testi-avatar pyme">TR</div>
           <div>
             <div class="testi-name">Gerencia General</div>
             <div class="testi-role">PyME · Sector turismo</div>
@@ -813,7 +1001,7 @@
         <div class="testi-stars">★★★★★</div>
         <p class="testi-text">"El contexto cambiario argentino nos generaba mucha incertidumbre. Standard Finances nos ayudó a planificar nuestras compras al exterior con una estrategia financiera que redujo el riesgo y mejoró nuestra rentabilidad."</p>
         <div class="testi-author">
-          <div class="testi-avatar pyme">📦</div>
+          <div class="testi-avatar pyme">IM</div>
           <div>
             <div class="testi-name">Área Administrativa</div>
             <div class="testi-role">PyME · Sector importación</div>
@@ -829,7 +1017,7 @@
         <div class="testi-stars">★★★★★</div>
         <p class="testi-text">"Llegamos a Standard Finances con los costos disparados y sin entender por qué no nos cerraban los números. En tres meses reorganizamos la estructura de proveedores, ajustamos precios y el margen mejoró más de lo que esperábamos. Lo más valioso fue tener un plan claro para ejecutar."</p>
         <div class="testi-author">
-          <div class="testi-avatar pyme">🏗️</div>
+          <div class="testi-avatar pyme">DM</div>
           <div>
             <div class="testi-name">Diego M.</div>
             <div class="testi-role">Gerente General · PyME · Sector construcción</div>
@@ -842,7 +1030,7 @@
         <div class="testi-stars">★★★★★</div>
         <p class="testi-text">"Nosotros veíamos el problema pero no teníamos el enfoque para resolverlo. El equipo de Business Coach nos dio una mirada externa que no tiene precio: identificaron ineficiencias que teníamos naturalizadas y nos dieron herramientas concretas para atacarlas. Hoy operamos de otra manera."</p>
         <div class="testi-author">
-          <div class="testi-avatar pyme">💼</div>
+          <div class="testi-avatar pyme">VS</div>
           <div>
             <div class="testi-name">Valeria S.</div>
             <div class="testi-role">Directora · PyME · Sector servicios</div>
@@ -856,6 +1044,17 @@
     <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.532 5.862L.057 23.25a.75.75 0 00.916.914l5.453-1.46A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.699-.504-5.25-1.385l-.375-.214-3.886 1.04 1.07-3.799-.234-.386A9.96 9.96 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
     Consultar por WhatsApp
   </a>
+
+  <!-- CIERRE ESTRATEGICO -->
+  <section id="cierre">
+    <div class="cierre-divider"></div>
+    <p class="cierre-quote">
+      "Las malas decisiones financieras no se toman por falta de dinero.
+      <strong>Se toman por falta de estrategia."</strong>
+    </p>
+    <p class="cierre-sub">Una decisión bien tomada vale más que años de resultados mediocres.</p>
+    <a href="#contacto" class="btn-primary" style="position:relative;z-index:1;">Quiero mi diagnóstico →</a>
+  </section>
 
   <footer>
     <div class="footer-brand">Standard<span>.</span>Finances S.A.S</div>
